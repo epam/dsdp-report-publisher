@@ -27,7 +27,7 @@
 			**/client/**/*
 		</sonar.coverage.exclusions>
 		<sonar.test.exclusions>src/test/**,src/it/**</sonar.test.exclusions>
-		<apache.commonsio.version>2.11.0</apache.commonsio.version>
+		<apache.commonsio.version>2.14.0</apache.commonsio.version>
 		<jsoup.version>1.15.3</jsoup.version>
 		<commons.compress.version>1.26.1</commons.compress.version>
 		<snakeyaml.version>2.2</snakeyaml.version>
