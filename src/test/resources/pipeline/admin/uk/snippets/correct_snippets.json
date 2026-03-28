@@ -1,0 +1,54 @@
+[
+  {
+    "description": "",
+    "created_at": "2021-05-17T15:16:29.670Z",
+    "updated_at": "2021-05-17T15:21:02.390Z",
+    "snippet": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        <OBJ_PK_UUID> AS value,\n        name AS name\n    FROM <OBJ_NAME>\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+    "trigger": "select_query_based_dropdown_list",
+    "user": {
+      "auth_type": "password",
+      "is_disabled": false,
+      "updated_at": "2021-05-18T06:57:57.395Z",
+      "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+      "is_invitation_pending": false,
+      "groups": [
+        1,
+        2
+      ],
+      "id": 1,
+      "name": "redash-admin",
+      "created_at": "2021-05-06T14:10:38.176Z",
+      "disabled_at": null,
+      "is_email_verified": true,
+      "active_at": "2021-05-18T06:57:49Z",
+      "email": "user@mail.com"
+    },
+    "id": 1
+  },
+  {
+    "description": "",
+    "created_at": "2021-05-17T15:16:29.670Z",
+    "updated_at": "2021-05-17T15:21:02.390Z",
+    "snippet": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        <OBJ_PK_UUID> AS value,\n        name AS name\n    FROM <OBJ_NAME>\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+    "trigger": "select_query_based_dropdown_list",
+    "user": {
+      "auth_type": "password",
+      "is_disabled": false,
+      "updated_at": "2021-05-18T06:57:57.395Z",
+      "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+      "is_invitation_pending": false,
+      "groups": [
+        1,
+        2
+      ],
+      "id": 1,
+      "name": "redash-admin",
+      "created_at": "2021-05-06T14:10:38.176Z",
+      "disabled_at": null,
+      "is_email_verified": true,
+      "active_at": "2021-05-18T06:57:49Z",
+      "email": "user@mail.com"
+    },
+    "id": 2
+  }
+]
