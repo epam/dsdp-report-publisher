@@ -1,0 +1,928 @@
+{
+  "count": 14,
+  "page": 1,
+  "page_size": 25,
+  "results": [
+    {
+      "id": 54,
+      "latest_query_data_id": 14010,
+      "name": "Перелік пошкоджених та знищених приміщень",
+      "description": null,
+      "query": "        SELECT\n        p.obj_kind_name\n        , p.object_rpzm_id \"Реєстраційний номер ОНМ в РПЗМ\"\n        , p.premises_type_name \"Tип приміщення\"\n        , p.premises_unit_name \"Підрозділ типу приміщення\"\n        , p.community_address_name \"Tериторіальна громада\"\n        , CASE WHEN p.access_is_limited='false' then 'Ні' ELSE 'Так'  END as access_is_limited\n        , p.fullname, p.obl_address_name\n        , CASE WHEN p.area_address_name IS NULL THEN '' ELSE p.area_address_name END  as area_address_name\n        , CASE WHEN p.community_address_name IS NULL THEN '' ELSE p.community_address_name END as community_address_name\n        , CASE WHEN p.settlement_address_name IS NULL THEN '' ELSE p.settlement_address_name END as settlement_address_name\n        , date(p.created_at) as created_at \n        , p.obl_codificatorcode FROM registry.report_premises__list_v p\n        WHERE p.is_active_flag='true'",
+      "query_hash": "d5aed85c0bf903a10a00fb26c785a033",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-15T11:58:39.635Z",
+      "created_at": "2022-11-14T17:38:16.782Z",
+      "data_source_id": 1,
+      "options": {
+        "apply_auto_limit": true,
+        "parameters": []
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": "2022-11-14T19:25:00.065Z",
+      "runtime": 0.0332744121551514,
+      "is_favorite": false
+    },
+    {
+      "id": 53,
+      "latest_query_data_id": null,
+      "name": "Перелік пошкоджених та знищених будівель",
+      "description": null,
+      "query": " WITH cte_objects AS (\n         SELECT b.obj_kind_name\n        , CASE WHEN b.access_is_limited='false' then 'Ні' ELSE 'Так'  END as access_is_limited\n        , b.fullname, b.obl_address_name \n        , CASE WHEN b.area_address_name IS NULL THEN '' ELSE b.area_address_name END as area_address_name\n        , CASE WHEN b.community_address_name IS NULL THEN '' ELSE b.community_address_name END as community_address_name\n        , CASE WHEN b.settlement_address_name IS NULL THEN '' ELSE b.settlement_address_name END as settlement_address_name\n        , date(b.created_at) AS created_at\n        , b.obl_codificatorcode FROM registry.report_buildings__list_v b\n        WHERE b.is_active_flag='true'\n    \n      )\nSelect \nobj_kind_name as \"Об'єкт нерухомого майна\"\n, access_is_limited AS \"Обмежений доступ\"\n, fullname AS \"Повна назва\"\n, obl_address_name AS \"Область, м.Київ або м.Севастополь\"\n, area_address_name AS \"Район в області\"\n, community_address_name AS \"Територіальна громада\"\n, settlement_address_name AS \"Населений пункт\"\n, created_at AS \"Дата створення об'єкта\"\n, obl_codificatorcode\n from cte_objects\n where  ('{{ obl_address_name }}' = '( Всі значення )' OR obl_address_name = '{{ obl_address_name }}')\nand  (($quote${{ area_address_name }}$quote$  = '( Всі значення )' OR area_address_name ~* f_regexp_escape($quote${{ area_address_name }}$quote$)))\nand\n (($quote${{ community_address_name }}$quote$  = '( Всі значення )' OR community_address_name ~* f_regexp_escape($quote${{ community_address_name }}$quote$)))\nand\n (($quote${{ settlement_address_name }}$quote$  = '( Всі значення )' OR settlement_address_name ~* f_regexp_escape($quote${{ settlement_address_name }}$quote$)))\nand\ndate(created_at)  between '{{ created.start }}' AND '{{ created.end }}'\n\n--and obl_codificatorcode like '[[katottg]]%';",
+      "query_hash": "455053da2c4ac08d7fcb6e39a21e1993",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-16T07:25:07.897Z",
+      "created_at": "2022-11-10T20:12:16.681Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": [
+          {
+            "title": "Дата створення об'єкта",
+            "name": "created",
+            "type": "datetime-range",
+            "global": false,
+            "locals": [],
+            "value": "d_today"
+          },
+          {
+            "title": "obl_address_name",
+            "name": "obl_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Вінницька обл."
+          },
+          {
+            "title": "area_address_name",
+            "name": "area_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 48,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "community_address_name",
+            "name": "community_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 49,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "settlement_address_name",
+            "name": "settlement_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 50,
+            "value": "( Всі значення )"
+          }
+        ],
+        "apply_auto_limit": false
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 52,
+      "latest_query_data_id": null,
+      "name": "Вулиця",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        '( Всі значення )' AS level5_name\n    UNION ALL\n    SELECT distinct 2 AS rn,\n         add5.name AS level5_name\n    FROM registry.report_address_v add1\nleft join registry.report_address_v add2 on add1.atuid=add2.codificatorparentatuid \nleft join registry.report_address_v add3 on add2.atuid=add3.codificatorparentatuid\nleft join registry.report_address_v add4 on add3.atuid=add4.codificatorparentatuid\nleft join registry.report_address_v add5 on add4.atuid=add4.codificatorparentatuid\nwhere add4.codificatorlevel = 6\nand ('{{obl_address_name }}' = '( Всі значення )' OR add1.name = '{{ obl_address_name }}')\nand  ($quote${{ area_address_name }}$quote$  = '( Всі значення )' OR add2.name ~* f_regexp_escape($quote${{ area_address_name }}$quote$))\nand  ($quote${{ community_address_name }}$quote$  = '( Всі значення )' OR add3.name ~* f_regexp_escape($quote${{ community_address_name }}$quote$))\nand  ($quote${{ settlement_address_name }}$quote$  = '( Всі значення )' OR add4.name ~* f_regexp_escape($quote${{ settlement_address_name }}$quote$))\n)\nSELECT level5_name\nFROM cte\nORDER BY rn, level5_name;",
+      "query_hash": "34f3be099067656cb23dfcb39126a916",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-10T10:44:08.363Z",
+      "created_at": "2022-11-09T20:38:36.675Z",
+      "data_source_id": 1,
+      "options": {
+        "apply_auto_limit": true,
+        "parameters": [
+          {
+            "title": "obl_address_name",
+            "name": "obl_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Вінницька обл."
+          },
+          {
+            "title": "area_address_name",
+            "name": "area_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 48,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "community_address_name",
+            "name": "community_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 49,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "settlement_address_name",
+            "name": "settlement_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 50,
+            "value": "( Всі значення )"
+          }
+        ]
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 51,
+      "latest_query_data_id": null,
+      "name": "Загальна кількість пошкоджених та знищених об'єктів, в розрізі по КАТОТТГ",
+      "description": null,
+      "query": " WITH cte_objects AS (\n         SELECT b.obj_kind_name\n        , CASE WHEN b.access_is_limited='false' then 'Ні' ELSE 'Так'  END as access_is_limited\n        , b.fullname, b.obl_address_name \n        , CASE WHEN b.area_address_name IS NULL THEN '' ELSE b.area_address_name END as area_address_name\n        , CASE WHEN b.community_address_name IS NULL THEN '' ELSE b.community_address_name END as community_address_name\n        , CASE WHEN b.settlement_address_name IS NULL THEN '' ELSE b.settlement_address_name END as settlement_address_name\n        , date(b.created_at) AS created_at\n        , b.obl_codificatorcode FROM registry.report_buildings__list_v b\n        WHERE b.is_active_flag='true'\n    UNION ALL\n        SELECT p.obj_kind_name\n        , CASE WHEN p.access_is_limited='false' then 'Ні' ELSE 'Так'  END as access_is_limited\n        , p.fullname, p.obl_address_name\n        , CASE WHEN p.area_address_name IS NULL THEN '' ELSE p.area_address_name END  as area_address_name\n        , CASE WHEN p.community_address_name IS NULL THEN '' ELSE p.community_address_name END as community_address_name\n        , CASE WHEN p.settlement_address_name IS NULL THEN '' ELSE p.settlement_address_name END as settlement_address_name\n        , date(p.created_at) as created_at \n        , p.obl_codificatorcode FROM registry.report_premises__list_v p\n        WHERE p.is_active_flag='true'\n     UNION ALL\n        SELECT c.obj_kind_name\n        , CASE WHEN c.access_is_limited='false' then 'Ні' ELSE 'Так'  END as access_is_limited\n        , c.fullname, c.obl_address_name \n        , CASE WHEN c.area_address_name IS NULL THEN '' ELSE c.area_address_name END as area_address_name\n        , CASE WHEN c.community_address_name IS NULL THEN '' ELSE c.community_address_name END as community_address_name\n        , CASE WHEN c.settlement_address_name IS NULL THEN '' ELSE c.settlement_address_name END as settlement_address_name\n        , date(c.created_at) created_at \n        , c.obl_codificatorcode FROM registry.report_constructions__list_v c\n        WHERE c.is_active_flag='true'\n )\nSelect \nobj_kind_name as \"Об'єкт нерухомого майна\"\n, access_is_limited AS \"Обмежений доступ\"\n, fullname AS \"Повна назва\"\n, obl_address_name AS \"Область, м.Київ або м.Севастополь\"\n, area_address_name AS \"Район в області\"\n, community_address_name AS \"Територіальна громада\"\n, settlement_address_name AS \"Населений пункт\"\n, created_at AS \"Дата створення об'єкта\"\n, obl_codificatorcode\n from cte_objects\n where  ('{{ obl_address_name }}' = '( Всі значення )' OR obl_address_name = '{{ obl_address_name }}')\nand  (($quote${{ area_address_name }}$quote$  = '( Всі значення )' OR area_address_name ~* f_regexp_escape($quote${{ area_address_name }}$quote$)))\nand\n (($quote${{ community_address_name }}$quote$  = '( Всі значення )' OR community_address_name ~* f_regexp_escape($quote${{ community_address_name }}$quote$)))\nand\n (($quote${{ settlement_address_name }}$quote$  = '( Всі значення )' OR settlement_address_name ~* f_regexp_escape($quote${{ settlement_address_name }}$quote$)))\nand\ndate(created_at)  between '{{ created.start }}' AND '{{ created.end }}'\nand\n('{{ obj_kind_name }}' = '( Всі значення )' OR obj_kind_name = '{{ obj_kind_name }}')\n--and obl_codificatorcode like '[[katottg]]%';",
+      "query_hash": "a8f7c168ab4841e10924486c8c51f784",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-16T07:25:24.508Z",
+      "created_at": "2022-11-08T12:25:22.076Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": [
+          {
+            "title": "Дата створення об'єкта",
+            "name": "created",
+            "type": "datetime-range",
+            "global": false,
+            "locals": [],
+            "value": "d_today"
+          },
+          {
+            "title": "Obj kind name",
+            "name": "obj_kind_name",
+            "type": "query",
+            "locals": [],
+            "queryId": 43,
+            "value": "(Всі значення)"
+          },
+          {
+            "title": "obl_address_name",
+            "name": "obl_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Вінницька обл."
+          },
+          {
+            "title": "area_address_name",
+            "name": "area_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 48,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "community_address_name",
+            "name": "community_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 49,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "settlement_address_name",
+            "name": "settlement_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 50,
+            "value": "( Всі значення )"
+          }
+        ],
+        "apply_auto_limit": false
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 50,
+      "latest_query_data_id": null,
+      "name": "Населений пункт",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        '( Всі значення )' AS level4_name\n    UNION ALL\n    SELECT distinct 2 AS rn,\n         add4.name AS level4_name\n    FROM registry.report_address_v add1\nleft join registry.report_address_v add2 on add1.atuid=add2.codificatorparentatuid \nleft join registry.report_address_v add3 on add2.atuid=add3.codificatorparentatuid\nleft join registry.report_address_v add4 on add3.atuid=add4.codificatorparentatuid\nwhere add4.codificatorlevel = 4\nand ('{{obl_address_name }}' = '( Всі значення )' OR add1.name = '{{ obl_address_name }}')\nand  ($quote${{ area_address_name }}$quote$  = '( Всі значення )' OR add2.name ~* f_regexp_escape($quote${{ area_address_name }}$quote$))\nand  ($quote${{ community_address_name }}$quote$  = '( Всі значення )' OR add3.name ~* f_regexp_escape($quote${{ community_address_name }}$quote$))\n)\nSELECT level4_name\nFROM cte\nORDER BY rn, level4_name;",
+      "query_hash": "e7cf61d3ca2cd66bb2c29da47dbdd4d4",
+      "schedule": {
+        "interval": 86400,
+        "time": "07:15",
+        "day_of_week": null,
+        "until": null
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-10T10:41:56.220Z",
+      "created_at": "2022-11-08T11:07:09.467Z",
+      "data_source_id": 1,
+      "options": {
+        "apply_auto_limit": true,
+        "parameters": [
+          {
+            "title": "obl_address_name",
+            "name": "obl_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Вінницька обл."
+          },
+          {
+            "title": "area_address_name",
+            "name": "area_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 48,
+            "value": "( Всі значення )"
+          },
+          {
+            "title": "community_address_name",
+            "name": "community_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 49,
+            "value": "( Всі значення )"
+          }
+        ]
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 49,
+      "latest_query_data_id": null,
+      "name": "Територіальна громада",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        '( Всі значення )' AS level3_name\n    UNION ALL\n    SELECT distinct 2 AS rn,\n         add3.name AS level3_name\n    FROM registry.report_address_v add1\nleft join registry.report_address_v add2 on add1.atuid=add2.codificatorparentatuid \nleft join registry.report_address_v add3 on add2.atuid=add3.codificatorparentatuid\nwhere  ('{{obl_address_name }}' = '( Всі значення )' OR add1.name = '{{ obl_address_name }}')\nand  (($quote${{ area_address_name }}$quote$  = '( Всі значення )' OR add2.name ~* f_regexp_escape($quote${{ area_address_name }}$quote$)))\n)\nSELECT level3_name\nFROM cte\nORDER BY rn, level3_name;",
+      "query_hash": "bae2014c58aa4fb28f65d3b7eb0e724b",
+      "schedule": {
+        "interval": 86400,
+        "time": "07:15",
+        "day_of_week": null,
+        "until": null
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-10T10:40:51.665Z",
+      "created_at": "2022-11-08T10:38:52.401Z",
+      "data_source_id": 1,
+      "options": {
+        "apply_auto_limit": true,
+        "parameters": [
+          {
+            "title": "obl_address_name",
+            "name": "obl_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Вінницька обл."
+          },
+          {
+            "title": "Area address name",
+            "name": "area_address_name",
+            "type": "query",
+            "locals": [],
+            "queryId": 48,
+            "value": "( Всі значення )"
+          }
+        ]
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 48,
+      "latest_query_data_id": null,
+      "name": "Район",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        '( Всі значення )' AS level2_name\n    UNION ALL\n    SELECT distinct 2 AS rn,\n         add2.name AS level2_name\n    FROM registry.report_address_v add1\nleft join registry.report_address_v add2 on add1.atuid=add2.codificatorparentatuid \nwhere  ('{{obl_address_name }}' = '( Всі значення )' OR add1.name = '{{ obl_address_name }}') and add2.codificatorlevel <>6\n)\nSELECT level2_name\nFROM cte\nORDER BY rn, level2_name;",
+      "query_hash": "120ba906927f49ea1dbb997d6748b8b0",
+      "schedule": {
+        "interval": 86400,
+        "time": "07:15",
+        "day_of_week": null,
+        "until": null
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-10T10:38:43.045Z",
+      "created_at": "2022-11-08T10:28:49.556Z",
+      "data_source_id": 1,
+      "options": {
+        "apply_auto_limit": true,
+        "parameters": [
+          {
+            "title": "obl_address_name",
+            "name": "obl_address_name",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Вінницька обл."
+          }
+        ]
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 47,
+      "latest_query_data_id": 14127,
+      "name": "Область",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT distinct 2 AS rn,\n         name AS level1_name\n    FROM report_address_v\n    where codificatorlevel=1\n)\nSELECT level1_name\nFROM cte\nORDER BY rn, level1_name;\n",
+      "query_hash": "e127d5816821c99f7c51a87b0acb65f1",
+      "schedule": {
+        "interval": 86400,
+        "time": "07:15",
+        "day_of_week": null,
+        "until": null
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-10T07:56:49.388Z",
+      "created_at": "2022-11-08T10:16:06.682Z",
+      "data_source_id": 1,
+      "options": {
+        "apply_auto_limit": true,
+        "parameters": []
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": "2022-11-16T07:15:50.576Z",
+      "runtime": 0.0158109664916992,
+      "is_favorite": false
+    },
+    {
+      "id": 46,
+      "latest_query_data_id": 14118,
+      "name": "ІП Вибір статусу",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        '( All values )' AS code,\n        '( Всі значення )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        status_code AS code,\n        status_name AS name\n    FROM registry.report_status_info_message_v\n)\nSELECT code, name\nFROM cte\nORDER BY rn, name;",
+      "query_hash": "a5743b59e836c2fb8a64743c43f0fa52",
+      "schedule": {
+        "interval": 86400,
+        "until": null,
+        "day_of_week": null,
+        "time": "06:15"
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-10-24T06:17:16.986Z",
+      "created_at": "2022-10-12T11:59:00.200Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": []
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 7,
+      "retrieved_at": "2022-11-16T06:16:17.240Z",
+      "runtime": 0.0158753395080566,
+      "is_favorite": false
+    },
+    {
+      "id": 43,
+      "latest_query_data_id": 14117,
+      "name": "Вибір роду об'єкта",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -2 AS rn,\n        '(Всі значення)' AS object_kind\n    UNION ALL\n    SELECT distinct 2 AS rn,\n    obj_kind_name AS object_kind\n    FROM registry.report_object_kind_v\n)\nSELECT object_kind\nFROM cte\nORDER BY rn, object_kind;\n",
+      "query_hash": "57f5fa00ee50eca272e4525187667969",
+      "schedule": {
+        "interval": 86400,
+        "until": null,
+        "day_of_week": null,
+        "time": "06:15"
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-10-24T06:17:16.982Z",
+      "created_at": "2022-09-20T08:43:18.152Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": []
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": "2022-11-16T06:16:17.240Z",
+      "runtime": 0.014453649520874,
+      "is_favorite": false
+    },
+    {
+      "id": 42,
+      "latest_query_data_id": null,
+      "name": "Інформація по пошкодженим та знищеним об'єктам",
+      "description": null,
+      "query": "WITH cte_real_estate_objects AS (\n    SELECT b.obj_kind_name AS obj_kind_name\n    , b.real_estate_object_id AS real_estate_object_id\n    , b.object_rpzm_id as object_rpzm_id\n    , b.fullname AS fullname\n    , b.building AS  building   \n    , b.corp AS corp\n    , b.letter AS letter\n    , '' as flat\n    , b.obj_gr_name AS obj_gr_name\n    , '' \"Підрозділ типу приміщення\"\n    , '' \"Тип автомобільної дороги\", '' \"Назва автомобільної дороги\", '' \"Залізниця\"\n    , '' \"Початкова станція пошкодженої ділянки\", '' \"Кінцева станція пошкодженної ділянки\"\n    , 0 \"Кілометрова прив'язка (початок)\", 0 \"Кілометрова прив'язка (кінець)\"\n    , b.object_name AS object_name\n    , b.address_description AS address_description  \n    , b.is_active_flag AS is_active_flag\n    , b.obl_address_name AS obl_address_name\n    , date(b.created_at) AS created_at FROM registry.report_buildings__list_v b\n    UNION ALL\n    SELECT p.obj_kind_name AS obj_kind_name\n    , p.real_estate_object_id AS real_estate_object_id\n    , p.object_rpzm_id\n    , p.fullname AS \"Адреса\"\n    , p.building\n    , p.corp\n    , p.letter\n    , p.flat \n    , p.obj_gr_name\n    , p.name --as 'Підрозділ типу приміщення'\n    , '', '', '', '', '', 0, 0\n    , p.address_description\n    , p.object_name \"Найменування об'єкта\"\n    , p.is_active_flag AS is_active_flag\n    , p.obl_address_name\n    , date(p.created_at) FROM registry.report_premises__list_v p\n    UNION ALL\n    SELECT c.obj_kind_name AS obj_kind_name\n    , c.real_estate_object_id AS real_estate_object_id\n    , c.object_rpzm_id\n    , c.fullname AS \"Адреса\"\n    , '', '','',''\n    , c.cnstr_gr_name\n    , ''\n    , c.roads_type, c.roads_name, c.railways_name, c.start_station, c.end_station, c.start_km_binding, c.end_km_binding\n    , c.address_description\n    , c.object_name \"Найменування об'єкта\"\n    , c.is_active_flag AS is_active_flag\n    , c.obl_address_name\n    , date(c.created_at) FROM registry.report_constructions__list_v c\n)\nSELECT row_number() over(order by o.fullname, o.building, o.corp, o.letter, o.flat) as \"№ з.п.\"\n    , o.obj_kind_name AS \"Об'єкт нерухомого майна\"\n    , o.real_estate_object_id AS \"Ідентифікатор об'єкта нерухомого майна\"\n    , o.object_rpzm_id AS \"Реєстраційний номер ОНМ\"\n    , o.fullname AS \"Адреса\"\n    , o.building \"Будинок\"\n    , o.corp \"Корпус/секція\"\n    , o.letter \"Літера\"\n    , o.flat \"Номер квартири/приміщення\"\n    , o.obj_gr_name \"Група типу нерухомого майна\"\n    , '' \"Підрозділ типу приміщення\"\n    , '' \"Тип автомобільної дороги\", '' \"Назва автомобільної дороги\", '' \"Залізниця\"\n    , '' \"Початкова станція пошкодженої ділянки\", '' \"Кінцева станція пошкодженної ділянки\"\n    , \"Кілометрова прив'язка (початок)\", \"Кілометрова прив'язка (кінець)\"\n    , o.object_name \"Найменування об'єкта\"\n    , o.address_description \"Розташування\"\n    , date(o.created_at) AS \"Дата створення\" FROM cte_real_estate_objects o\nWHERE o.is_active_flag='true'\nAND date(o.created_at)  between '{{ created.start }}' AND '{{ created.end }}'\nAND ('{{region }}' = '(Всі значення)' OR o.obl_address_name = '{{ region }}')\nAND ('{{object_kind }}' = '(Всі значення)' OR o.obj_kind_name = '{{ object_kind }}')\nAND  (object_rpzm_id ~* f_regexp_escape($quote${{ object_rpzm_id }}$quote$) OR $quote${{ object_rpzm_id }}$quote$ = '*')\nORDER BY \"Адреса\", \"Будинок\",\"Корпус/секція\", \"Літера\", \"Номер квартири/приміщення\" ;",
+      "query_hash": "4313bc2c84f6f60617bba392dde3d546",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-16T07:25:40.741Z",
+      "created_at": "2022-09-19T08:02:16.829Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": [
+          {
+            "title": "Дата створення об'єкта",
+            "name": "created",
+            "type": "datetime-range",
+            "global": false,
+            "locals": [],
+            "value": "d_this_week"
+          },
+          {
+            "title": "Область, м.Київ або м.Севастополь",
+            "name": "region",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "(Всі значення)"
+          },
+          {
+            "title": "Рід об'єкта",
+            "name": "object_kind",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 43,
+            "multiValuesOptions": null,
+            "value": "(Всі значення)"
+          },
+          {
+            "title": "Реєстраційний номер ОНМ",
+            "name": "object_rpzm_id",
+            "type": "text",
+            "global": false,
+            "locals": [],
+            "value": "*"
+          }
+        ],
+        "apply_auto_limit": false
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": false,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 40,
+      "latest_query_data_id": null,
+      "name": "Пошкоджені та знищені об'єкти по районах",
+      "description": null,
+      "query": "SELECT b.name AS \"Об'єкт нерухомого майна\"\n--, CASE WHEN b.access_is_limited='false' then 'Ні' ELSE 'Так'  END AS \"Обмежений доступ\"\n, b.fullname AS \"Повна назва\"\n, b.obl_address_name AS \"Область, м.Київ або м.Севастополь\"\n, CASE WHEN b.area_address_name IS NULL THEN '' ELSE b.area_address_name END AS \"Район::filter\"\n, date(b.created_at) AS \"Дата створення\" FROM registry.report_real_estate_objects_count_v b\nWHERE b.name='Будівля' AND b.is_active_flag='true'\nAND date(b.created_at) between '{{ created.start }}' AND '{{ created.end }}'\nAND b.obl_address_name = '{{ region }}'\nUNION ALL\nSELECT 'Приміщення' AS name\n--, CASE WHEN p.access_is_limited='false' then 'Ні' ELSE 'Так'  END AS \"Обмежений доступ\"\n, p.fullname\n, p.obl_address_name AS \"Область, м.Київ або м.Севастополь\"\n, CASE WHEN p.area_address_name IS NULL THEN '' ELSE p.area_address_name END AS \"Район::filter\"\n, date(p.created_at) FROM registry.report_objects_premises_count_v p\nWHERE p.is_active_flag='true'\nAND date(p.created_at)  between '{{ created.start }}' AND '{{ created.end }}'\nAND p.obl_address_name = '{{ region }}'\nUNION ALL\nSELECT 'Інженерна споруда' AS name\n--, CASE WHEN p.access_is_limited='false' then 'Ні' ELSE 'Так'  END AS \"Обмежений доступ\"\n, c.fullname\n, c.obl_address_name AS \"Область, м.Київ або м.Севастополь\"\n, CASE WHEN c.area_address_name IS NULL THEN '' ELSE c.area_address_name END AS \"Район::filter\"\n, date(c.created_at) FROM registry.report_constructions__list_v c\nWHERE c.is_active_flag='true'\nAND date(c.created_at)  between '{{ created.start }}' AND '{{ created.end }}'\nAND c.obl_address_name = '{{ region }}'\nORDER BY \"Область, м.Київ або м.Севастополь\";\n;",
+      "query_hash": "ffb63444267089279a076b680fb3f525",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-11-16T07:25:56.003Z",
+      "created_at": "2022-09-08T14:45:50.157Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": [
+          {
+            "title": "Дата створення об'єкта",
+            "name": "created",
+            "type": "datetime-range",
+            "global": false,
+            "locals": [],
+            "value": "d_this_week"
+          },
+          {
+            "title": "Область, м.Київ або м.Севастополь",
+            "name": "region",
+            "type": "query",
+            "global": false,
+            "locals": [],
+            "queryId": 47,
+            "value": "Не вказано"
+          }
+        ],
+        "apply_auto_limit": false
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 37,
+      "latest_query_data_id": null,
+      "name": "Інформаційні повідомлення статистика",
+      "description": null,
+      "query": "select \nrow_number() over(order by (to_timestamp(im.registration_date, 'YYYY-MM-DDTHH24:MI:SS,FF6Z'))::date desc, im.region, im.city, im.street, im.house, im.apartment) as \"№ з.п.\",\nim.application_number as \"Номер ІП\"\n, im.status_name as \"Статус ІП\"\n, (to_timestamp(im.registration_date, 'YYYY-MM-DDTHH24:MI:SS,FF6Z'))::date as \"Дата реєстрації ІП\"\n, im.type_name as \"Тип об'єкта НМ\"\n, im.region as \"Область\"\n, im.city as \"Населений пункт::filter\"\n, im.street as \"Вулиця\"\n, im.house as \"Будинок\"\n, im.apartment as \"Квартира\"\n, im.real_estate_description as \"Опис місцезнаходження\"\n, im.condition_name as \"Стан майна\"\n, im.damages_description as \"Опис пошкоджень\"\n, im.inhabitants as \"Кількість осіб, які мешкали в житлі\"\n, CASE WHEN im.is_cultural='false' then 'Ні' ELSE 'Так'  END as \"Культурна спадщина\"\n, im.ddm_created_at as \"Дата імпорта в БД\"\nfrom registry.report_info_message_full_v im\nwhere im.region = '{{ region }}'\nand ('{{ status }}' = '( All values )' OR im.status_code = '{{ status }}')\nand (to_timestamp(im.registration_date, 'YYYY-MM-DDTHH24:MI:SS,FF6Z'))::date between '{{ Created_date.start }}' and '{{ Created_date.end }}'\norder by (to_timestamp(im.registration_date, 'YYYY-MM-DDTHH24:MI:SS,FF6Z'))::date desc, im.region, im.city, im.street, im.house, im.apartment",
+      "query_hash": "bb166ae3dcaae938b070a22ef9f01493",
+      "schedule": null,
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-10-13T10:46:05.422Z",
+      "created_at": "2022-09-01T13:36:17.000Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": [
+          {
+            "name": "region",
+            "title": "Область",
+            "global": false,
+            "value": "Не вказано",
+            "queryId": 35,
+            "locals": [],
+            "type": "query",
+            "parentQueryId": 37
+          },
+          {
+            "name": "Created_date",
+            "title": "Дата реєстрації",
+            "global": false,
+            "value": "d_this_week",
+            "parentQueryId": 37,
+            "type": "date-range",
+            "locals": []
+          },
+          {
+            "name": "status",
+            "title": "Статус ІП",
+            "value": "( All values )",
+            "queryId": 46,
+            "parentQueryId": 37,
+            "type": "query",
+            "locals": []
+          }
+        ]
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 8,
+      "retrieved_at": null,
+      "runtime": null,
+      "is_favorite": false
+    },
+    {
+      "id": 35,
+      "latest_query_data_id": 14119,
+      "name": "ІП_Вибір області",
+      "description": null,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        'Не вказано' AS region\n    UNION ALL\n    SELECT distinct 2 AS rn,\n         region AS region\n    FROM registry.report_info_message_full_v\n)\nSELECT region\nFROM cte\nORDER BY rn, region;\n",
+      "query_hash": "532004230e0fab3fbff66606841f7038",
+      "schedule": {
+        "interval": 3600,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "is_archived": false,
+      "is_draft": false,
+      "updated_at": "2022-10-27T14:49:25.118Z",
+      "created_at": "2022-09-01T11:42:00.470Z",
+      "data_source_id": 1,
+      "options": {
+        "parameters": []
+      },
+      "version": 1,
+      "tags": [],
+      "is_safe": true,
+      "user": {
+        "id": 1,
+        "name": "redash-admin",
+        "email": "user@mail.com",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "groups": [
+          1,
+          2,
+          4
+        ],
+        "updated_at": "2022-11-16T07:25:50.943Z",
+        "created_at": "2022-06-23T09:22:32.844Z",
+        "disabled_at": null,
+        "is_disabled": false,
+        "active_at": "2022-11-16T07:25:50Z",
+        "is_invitation_pending": false,
+        "is_email_verified": true,
+        "auth_type": "password"
+      },
+      "last_modified_by_id": 1,
+      "retrieved_at": "2022-11-16T06:53:19.199Z",
+      "runtime": 0.0175988674163818,
+      "is_favorite": false
+    }
+  ]
+}

@@ -1,0 +1,1726 @@
+{
+  "count": 26,
+  "page": 1,
+  "page_size": 26,
+  "results": [
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:07.299Z",
+      "is_favorite": false,
+      "query": "with cte_stavka as (\r\n\tselect\r\n\t\t1 as nom,\r\n\t\ts.full_name,\r\n\t\ts.specialization_date,\r\n\t\tlab.name as laboratory_name,\r\n\t\ts.salary\r\n\tfrom report_staff_v as s\r\n\t\tinner join report_laboratory_v as lab\r\n\t\t\ton lab.laboratory_id = s.laboratory_id \r\n\tunion\r\n\tselect\r\n\t\t2 as nom,\r\n\t\ts.full_name,\r\n\t\ts.specialization_date,\r\n\t\t'\u0412\u0441\u044c\u043e\u0433\u043e' as laboratory_name,\r\n\t\tsum(s.salary) as salary\r\n\tfrom report_staff_v as s\r\n\tgroup by s.full_name, s.specialization_date\r\n) \r\nselect\r\n\tfull_name as \"\u041f\u0406\u0411\",\r\n\tspecialization_date as \"\u0414\u0430\u0442\u0430 \u043f\u0440\u043e\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457\",\r\n\tlaboratory_name as \"\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u044f\",\r\n\tsalary as \"\u0421\u0442\u0430\u0432\u043a\u0430\"\r\nfrom cte_stavka as slct\r\nwhere lower(full_name) ~ case when '{{ full_name }}' = '*' then '.*' else lower('{{ full_name }}') end\r\norder by full_name, nom",
+      "id": 119,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "04481dc07710732ffa434a8bc7f4e431",
+      "api_key": "rPhIxsxyKNW6nYjkUOMiiKlkubV6fEoBgeB0jfJY",
+      "data_source_id": 1,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0420\u043e\u0437\u0440\u0430\u0445\u0443\u043d\u043e\u043a \u0441\u0442\u0430\u0432\u043a\u0438 \u043f\u043e \u043b\u0456\u043a\u0430\u0440\u044f\u043c \u043f\u0440\u0430\u0446\u044e\u044e\u0447\u0438\u043c \u0437\u0430 \u0441\u0443\u043c\u0456\u0441\u043d\u0438\u0446\u0442\u0432\u043e\u043c",
+      "created_at": "2021-05-13T14:03:06.806Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "full_name",
+            "title": "\u041f\u0406\u0411 \u043f\u0440\u0430\u0446\u0456\u0432\u043d\u0438\u043a\u0430",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:07.217Z",
+      "is_favorite": false,
+      "query": "select\r\n\tlab.name as \"\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    sc.hygienist_count as \"\u041b\u0456\u043a\u0430\u0440\u0456\u0432 \u0437 \u0433\u0456\u0433\u0456\u0454\u043d\u0438 \u043f\u0440\u0430\u0446\u0456\",\r\n    sc.laborant_count as \"\u041b\u0430\u0431\u043e\u0440\u0430\u043d\u0442\u0456\u0432\",\r\n    (sc.hygienist_count + sc.laborant_count) as \"\u0412\u0441\u044c\u043e\u0433\u043e\"\r\nfrom report_staff_count_v as sc\r\n\tinner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = sc.laboratory_id\r\norder by lab.name",
+      "id": 118,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "1b6a42e2a908c3651a92db12ab820634",
+      "api_key": "PhCSWTG27YIIvz4FrEx2kkeMymnckbKlv9uPmk8f",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u043f\u0440\u0430\u0446\u0456\u0432\u043d\u0438\u043a\u0456\u0432 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+      "created_at": "2021-05-13T14:03:06.703Z",
+      "runtime": null,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:07.133Z",
+      "is_favorite": false,
+      "query": "with cte_research as (\r\n\tselect \r\n\t\tsr.staff_id,\r\n\t\tstring_agg(sr.research_type, ', ') as research_type\r\n\tfrom report_staff_research_v as sr\r\n\tgroup by sr.staff_id\r\n)    \r\nselect\r\n    row_number() over() as \"\u2116 \u0437.\u043f.\",\r\n    lab.name as \"\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    s.full_name as \"\u041f\u0406\u0411 \u043f\u0440\u0430\u0446\u0456\u0432\u043d\u0438\u043a\u0430\",\r\n    s.hygienist_flag as \"\u0413\u0456\u0433\u0456\u0454\u043d\u0456\u0441\u0442\",\r\n    (not s.hygienist_flag) as \"\u041b\u0430\u0431\u043e\u0440\u0430\u043d\u0442\",\r\n    s.full_time_flag as \"\u041e\u0441\u043d\u043e\u0432\u043d\u0435 \u043c\u0456\u0441\u0446\u0435 \u0440\u043e\u0431\u043e\u0442\u0438\",\r\n    s.salary as \"\u0421\u0442\u0430\u0432\u043a\u0430\",\r\n    s.fixed_term_contract_flag as \"\u0422\u0440\u0443\u0434. \u0434\u043e\u0433\u043e\u0432\u0456\u0440 \u0441\u0442\u0440\u043e\u043a\u043e\u0432\u0438\u0439\",\r\n    s.contract_end_date as \"\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0434\u043e\u0433\u043e\u0432\u043e\u0440\u0443\",\r\n    cr.research_type as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0434\u043e\u0441\u043b\u0456\u0434\u0436\u0435\u043d\u044c\",\r\n    s.specialization_date as \"\u0414\u0430\u0442\u0430 \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457\",\r\n    s.specialization_end_date as \"\u0417\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457\"\r\nfrom report_staff_v s\r\n    inner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = s.laboratory_id\r\n\tleft join cte_research cr\r\n\t\ton cr.staff_id = s.staff_id\r\nwhere lower(lab.name) ~ case when '{{ lab_name }}' = '*' then '.*' else lower('{{ lab_name }}') end\r\n    and lower(s.full_name) ~ case when '{{ s_full_name }}' = '*' then '.*' else lower('{{ s_full_name }}') end\r\n    and ('{{ s_hygienist_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or (s.hygienist_flag and '{{ s_hygienist_flag }}' = '\u0422\u0430\u043a')\r\n        or ((not s.hygienist_flag) and '{{ s_hygienist_flag }}' = '\u041d\u0456'))\r\n    and ('{{ s_laborant_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or ((not s.hygienist_flag) and '{{ s_laborant_flag }}' = '\u0422\u0430\u043a')\r\n        or (s.hygienist_flag and '{{ s_laborant_flag }}' = '\u041d\u0456'))\r\n    and ('{{ s_full_time_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or (s.full_time_flag and '{{ s_full_time_flag }}' = '\u0422\u0430\u043a')\r\n        or ((not s.full_time_flag) and '{{ s_full_time_flag }}' = '\u041d\u0456'))\r\n    and ('{{ s_fixed_term_contract_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or (s.fixed_term_contract_flag and '{{ s_fixed_term_contract_flag }}' = '\u0422\u0430\u043a')\r\n        or ((not s.fixed_term_contract_flag) and '{{ s_fixed_term_contract_flag }}' = '\u041d\u0456'))\r\n    and exists(select 1 from report_staff_research_v rsr where rsr.staff_id = s.staff_id and (uuid_nil() in ({{ rsr_research_type }}) OR rsr.research_id in ({{ rsr_research_type }})))\r\n    and coalesce(s.contract_end_date, '{{ s_contract_end_date.end }}') between '{{ s_contract_end_date.start }}' and '{{ s_contract_end_date.end }}'\r\n    and coalesce(s.specialization_date, '{{ s_specialization_date.end }}') between '{{ s_specialization_date.start }}' and '{{ s_specialization_date.end }}'\r\n    and coalesce(s.specialization_end_date, '{{ s_specialization_end_date.end }}') between '{{ s_specialization_end_date.start }}' and '{{ s_specialization_end_date.end }}'\r\n",
+      "id": 117,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "fd062e4740033685c62c379016af01b4",
+      "api_key": "6n4IeGCLfUOp153eEmZJWPGH7ykAe5e7YqdCz3iR",
+      "data_source_id": 1,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0456\u0434\u043e\u043c\u043e\u0441\u0442\u0456 \u043f\u0440\u043e \u043a\u0430\u0434\u0440\u043e\u0432\u0435 \u0437\u0430\u0431\u0435\u0437\u043f\u0435\u0447\u0435\u043d\u043d\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+      "created_at": "2021-05-13T14:03:06.595Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "lab_name",
+            "title": " \u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          },
+          {
+            "name": "s_full_name",
+            "title": "\u041f\u0406\u0411 \u043f\u0440\u0430\u0446\u0456\u0432\u043d\u0438\u043a\u0430",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          },
+          {
+            "name": "s_hygienist_flag",
+            "title": "\u0413\u0456\u0433\u0456\u0454\u043d\u0456\u0441\u0442",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "s_laborant_flag",
+            "title": "\u041b\u0430\u0431\u043e\u0440\u0430\u043d\u0442",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "s_full_time_flag",
+            "title": "\u041e\u0441\u043d\u043e\u0432\u043d\u0435 \u043c\u0456\u0441\u0446\u0435 \u0440\u043e\u0431\u043e\u0442\u0438",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "s_fixed_term_contract_flag",
+            "title": "\u0422\u0440\u0443\u0434. \u0434\u043e\u0433\u043e\u0432\u0456\u0440 \u0441\u0442\u0440\u043e\u043a\u043e\u0432\u0438\u0439",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "name": "rsr_research_type",
+            "title": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0434\u043e\u0441\u043b\u0456\u0434\u0436\u0435\u043d\u044c",
+            "global": false,
+            "value": [
+              "00000000-0000-0000-0000-000000000000"
+            ],
+            "queryId": 107,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "s_contract_end_date",
+            "title": "\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0434\u043e\u0433\u043e\u0432\u043e\u0440\u0443",
+            "global": false,
+            "value": {
+              "start": "2001-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          },
+          {
+            "name": "s_specialization_date",
+            "title": "\u0414\u0430\u0442\u0430 \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457",
+            "global": false,
+            "value": {
+              "start": "2001-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          },
+          {
+            "name": "s_specialization_end_date",
+            "title": "\u0417\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457",
+            "global": false,
+            "value": {
+              "start": "2001-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:05.036Z",
+      "is_favorite": false,
+      "query": "select\r\n\tlab.ownership as \"\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456\",\r\n\tlab.management as \"\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f\",\r\n    count(0) as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c\"\r\nfrom report_registration_v r\r\n\tinner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = r.laboratory_id\r\nwhere\r\n\tr.created_date >= '{{ r_created_date.start }}'\r\n\t\tand r.created_date <= '{{ r_created_date.end }}'\r\ngroup by cube (lab.ownership, lab.management)\r\norder by lab.ownership, lab.management",
+      "id": 116,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "2dab1fe43421abf4fd8029f880067e9b",
+      "api_key": "LhQHA81bBULZAjM6nMWgnuwxC9HA4perlzE6JvI1",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0437\u0430\u044f\u0432 \u0432 \u0440\u043e\u0437\u0440\u0456\u0437\u0456 \u0444\u043e\u0440\u043c \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456 \u0442\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+      "created_at": "2021-05-13T14:03:04.174Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "global": false,
+            "type": "date-range",
+            "name": "r_created_date",
+            "locals": [],
+            "title": "\u0412\u0438\u0431\u0456\u0440 \u0434\u0430\u0442\u0438 \u0437/\u043f\u043e"
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:04.950Z",
+      "is_favorite": false,
+      "query": "with cte_fiz_factor as (\r\n\tselect\r\n\t\tr.registration_id,\r\n\t\tstring_agg(r.name, ', ') as factor_name\r\n\tfrom report_fiz_factors_v as r\r\n\tgroup by r.registration_id\r\n),\r\ncte_bio_factor as (\r\n\tselect\r\n\t\tr.registration_id,\r\n\t\tstring_agg(r.name, ', ') as factor_name\r\n\tfrom report_bio_factors_v as r\r\n\tgroup by r.registration_id\r\n),\r\ncte_him_factor as (\r\n\tselect\r\n\t\tr.registration_id,\r\n\t\tstring_agg(r.name, ', ') as factor_name\r\n\tfrom report_him_factors_v as r\r\n\tgroup by r.registration_id\r\n),\r\ncte_trud_factor as (\r\n\tselect\r\n\t\tr.registration_id,\r\n\t\tstring_agg(r.name, ', ') as factor_name\r\n\tfrom report_trud_factors_v as r\r\n\tgroup by r.registration_id\r\n)\r\nselect\r\n    row_number() over() as \"\u2116 \u0437.\u043f.\",\r\n\tr.created_date as \"\u0414\u0430\u0442\u0430 \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f\",\r\n\tr.registration_source as \"\u0414\u0436\u0435\u0440\u0435\u043b\u043e \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f\",\r\n\tr.application_type as \"\u0422\u0438\u043f \u0437\u0430\u044f\u0432\u0438\",\r\n\tr.accepted_by as \"\u041f\u0406\u0411 \u043e\u0441\u043e\u0431\u0438, \u044f\u043a\u0430 \u043f\u0440\u0438\u0439\u043d\u044f\u043b\u0430 \u0437\u0430\u044f\u0432\u043a\u0443\",\r\n    lab.name as \"\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lab.region as \"\u041e\u0431\u043b\u0430\u0441\u0442\u044c\",\r\n    lab.town as \"\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442\",\r\n    lab.address as \"\u0410\u0434\u0440\u0435\u0441\u0430\",\r\n    lab.phone_number as \"\u0422\u0435\u043b\u0435\u0444\u043e\u043d\",\r\n    lab.edrpou as \"\u041a\u043e\u0434 \u0437\u0430 \u0404\u0414\u0420\u041f\u041e\u0423\",\r\n    lab.ownership as \"\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456\",\r\n    lab.management as \"\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f\",\r\n    sc.hygienist_count as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0433\u0456\u0433\u0456\u0454\u043d\u0456\u0441\u0442\u0456\u0432\",\r\n    sc.laborant_count as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u043b\u0430\u0431\u043e\u0440\u0430\u043d\u0442\u0456\u0432\",\r\n    (fiz.registration_id is not null) as \"\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0444\u0456\u0437. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    fiz.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0456\u0437\u0438\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    (him.registration_id is not null) as \"\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0445\u0456\u043c. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    him.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0445\u0456\u043c\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    (bio.registration_id is not null) as \"\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0431\u0456\u043e. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    bio.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0431\u0456\u043e\u043b\u043e\u0433\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    (trud.registration_id is not null) as \"\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0442\u0440\u0443\u0434. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    trud.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432 \u0442\u0440\u0443\u0434. \u043f\u0440\u043e\u0446\u0435\u0441\u0443\",\r\n    r.solution_type as \"\u0420\u0456\u0448\u0435\u043d\u043d\u044f\",\r\n    r.solution_date as \"\u0414\u0430\u0442\u0430 \u0440\u0456\u0448\u0435\u043d\u043d\u044f\",\r\n    case\r\n        when r.solution_type = '\u0412\u0438\u043a\u043b\u044e\u0447\u0438\u0442\u0438 \u0437 \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n            then r.solution_date\r\n        else null\r\n    end as \"\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f \u0437 \u0456\u043d\u0444. \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443\",\r\n    r.health_ministry_letter_number as \"\u041d\u043e\u043c\u0435\u0440 \u043b\u0438\u0441\u0442\u0430-\u0432\u0456\u0434\u043f\u043e\u0432\u0456\u0434\u0456 \u041c\u041e\u0417\",\r\n    r.health_ministry_letter_date as \"\u0414\u0430\u0442\u0430 \u043b\u0438\u0441\u0442\u0430-\u0432\u0456\u0434\u043f\u043e\u0432\u0456\u0434\u0456 \u041c\u041e\u0417\",\r\n    r.exclusion_order_no as \"\u041d\u043e\u043c\u0435\u0440 \u041d\u0430\u043a\u0430\u0437\u0443 \u043f\u0440\u043e \u0432\u0438\u0434\u0430\u043b\u0435\u043d\u043d\u044f\",\r\n    r.exclusion_order_date as \"\u0414\u0430\u0442\u0430 \u041d\u0430\u043a\u0430\u0437\u0443 \u043f\u0440\u043e \u0432\u0438\u0434\u0430\u043b\u0435\u043d\u043d\u044f\",\r\n    r.letter_no as \"\u0420\u0435\u043a\u0432\u0456\u0437\u0438\u0442\u0438 \u043b\u0438\u0441\u0442\u0430 \u0440\u0456\u0448\u0435\u043d\u043d\u044f\",\r\n    r.received_by as \"\u041f\u0406\u0411 \u043e\u0441\u043e\u0431\u0438, \u044f\u043a\u0456\u0439 \u0432\u0440\u0443\u0447\u0438\u043b\u0438 \u0440\u0456\u0448\u0435\u043d\u043d\u044f\",\r\n    r.certified_by as \"\u0420\u0435\u043a\u0432\u0456\u0437\u0438\u0442\u0438 \u0434\u043e\u043a\u0443\u043c. \u043f\u0440\u043e \u043f\u043e\u0432\u043d\u043e\u0432\u0430\u0436\u0435\u043d\u043d\u044f\",\r\n    lab.accreditation_flag as \"\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lab.accreditation_end_date as \"\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u0457\"\r\nfrom report_registration_v r\r\n\tinner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = r.laboratory_id\r\n\tleft join report_staff_count_v as sc\r\n\t\ton sc.laboratory_id = r.laboratory_id\r\n    left join cte_fiz_factor as fiz\r\n\t    on fiz.registration_id = r.registration_id\r\n\tleft join cte_bio_factor as bio\r\n\t    on bio.registration_id = r.registration_id\r\n\tleft join cte_him_factor as him\r\n\t    on him.registration_id = r.registration_id\r\n\tleft join cte_trud_factor as trud\r\n\t    on trud.registration_id = r.registration_id\r\nwhere r.created_date between '{{ r_created_date.start }}' and '{{ r_created_date.end }}'\r\n\tand ('{{ r_registration_source }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' OR r.registration_source = '{{ r_registration_source }}')\r\n\tand lower(lab.name) ~ case when '{{ lab_name }}' = '*' then '.*' else lower('{{ lab_name }}') end\r\n\tand (uuid_nil() in ({{ r_application_type }}) OR r.application_type_id in ({{ r_application_type }}))\r\n    and ('{{ lab_region }}' = '0000000000' OR lab.obl_code = '{{ lab_region }}')\r\n    and ('{{ lab_town }}' = uuid_nil() OR lab.koatuu_id = '{{ lab_town }}')\r\n    and ('{{ lab_ownership }}' = uuid_nil() OR lab.ownership_id = '{{ lab_ownership }}')\r\n    and (uuid_nil() in ({{ lab_management }}) OR lab.kopfg_id in ({{ lab_management }}))\r\n    and ('{{ fiz_registration }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' \r\n        or ((fiz.registration_id is not null) and ('{{ fiz_registration }}' = '\u0422\u0430\u043a'))\r\n        or ((fiz.registration_id is null) and ('{{ fiz_registration }}' = '\u041d\u0456')))\r\n    and ('{{ him_registration }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' \r\n        or ((him.registration_id is not null) and ('{{ him_registration }}' = '\u0422\u0430\u043a'))\r\n        or ((him.registration_id is null) and ('{{ him_registration }}' = '\u041d\u0456')))\r\n    and ('{{ bio_registration }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' \r\n        or ((bio.registration_id is not null) and ('{{ bio_registration }}' = '\u0422\u0430\u043a'))\r\n        or ((bio.registration_id is null) and ('{{ bio_registration }}' = '\u041d\u0456')))\r\n    and ('{{ trud_registration }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' \r\n        or ((trud.registration_id is not null) and ('{{ trud_registration }}' = '\u0422\u0430\u043a'))\r\n        or ((trud.registration_id is null) and ('{{ trud_registration }}' = '\u041d\u0456')))\r\n    and ('{{ lab_accreditation_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' or lab.accreditation_flag = case when '{{ lab_accreditation_flag }}' = '\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e' then true when '{{ lab_accreditation_flag }}' = '\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e' then false end)\r\n    and ('{{ r_solution_type }}' = uuid_nil() OR r.solution_type_id = '{{ r_solution_type }}')\r\n",
+      "id": 115,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "fcaeffe6b7db6f649a3b1219f82e7ede",
+      "api_key": "Nt5ykjqo4QF6dRRGOgxmQqqFN7J44fYCxCffSYV3",
+      "data_source_id": 1,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0416\u0443\u0440\u043d\u0430\u043b \u043e\u0431\u043b\u0456\u043a\u0443 \u0437\u0430\u044f\u0432 \u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u0438\u0445 \u0434\u043e \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0439",
+      "created_at": "2021-05-13T14:03:04.061Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "r_created_date",
+            "title": "\u0414\u0430\u0442\u0430 \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f",
+            "global": false,
+            "value": {
+              "start": "2018-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          },
+          {
+            "name": "r_registration_source",
+            "title": "\u0414\u0436\u0435\u0440\u0435\u043b\u043e \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "queryId": 104,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "name": "r_application_type",
+            "title": "\u0422\u0438\u043f\u0438 \u0437\u0430\u044f\u0432",
+            "global": false,
+            "value": [
+              "00000000-0000-0000-0000-000000000000"
+            ],
+            "queryId": 101,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "lab_name",
+            "title": "\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          },
+          {
+            "name": "lab_region",
+            "title": "\u041e\u0431\u043b\u0430\u0441\u0442\u044c",
+            "global": false,
+            "value": "0000000000",
+            "queryId": 105,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "lab_town",
+            "title": "\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442",
+            "global": false,
+            "value": "00000000-0000-0000-0000-000000000000",
+            "queryId": 106,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "lab_ownership",
+            "title": "\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456",
+            "global": false,
+            "value": "00000000-0000-0000-0000-000000000000",
+            "queryId": 103,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "name": "lab_management",
+            "title": "\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+            "global": false,
+            "value": [
+              "00000000-0000-0000-0000-000000000000"
+            ],
+            "queryId": 108,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "fiz_registration",
+            "title": "\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0444\u0456\u0437. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "him_registration",
+            "title": "\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0445\u0456\u043c. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "bio_registration",
+            "title": "\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0431\u0456\u043e. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "trud_registration",
+            "title": "\u041d\u0430\u044f\u0432\u043d\u0456\u0441\u0442\u044c \u0442\u0440\u0443\u0434. \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "lab_accreditation_flag",
+            "title": "\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\n\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "r_solution_type",
+            "title": "\u0420\u0456\u0448\u0435\u043d\u043d\u044f",
+            "global": false,
+            "value": "00000000-0000-0000-0000-000000000000",
+            "queryId": 102,
+            "type": "query",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:04.864Z",
+      "is_favorite": false,
+      "query": "select\r\n    lab.region as \"\u041e\u0431\u043b\u0430\u0441\u0442\u044c\",\r\n    lab.town as \"\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442\",\r\n    count(0) as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c\"\r\nfrom report_registration_v r\r\n\tinner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = r.laboratory_id\r\nwhere\r\n\tr.created_date >= '{{ r_created_date.start }}'\r\n\t\tand r.created_date <= '{{ r_created_date.end }}'\r\ngroup by cube (lab.region, lab.town)\r\norder by lab.region, lab.town",
+      "id": 114,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "8ccd5ebde0649493f98b02bdb0231023",
+      "api_key": "HiZXs7U9byckKEvKlFrN2iyaqd9Wbaoh92HA1dde",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0437\u0430\u044f\u0432 \u0432 \u0440\u043e\u0437\u0440\u0456\u0437\u0456 \u0442\u0435\u0440\u0438\u0442\u043e\u0440\u0456\u0439",
+      "created_at": "2021-05-13T14:03:03.951Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "r_created_date",
+            "title": " \u0412\u0438\u0431\u0435\u0440\u0456\u0442\u044c \u0434\u0430\u0442\u0438 \u0437/\u043f\u043e",
+            "global": false,
+            "value": {
+              "start": "2018-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:04.782Z",
+      "is_favorite": false,
+      "query": "select\r\n    r.created_date as \"\u0414\u0430\u0442\u0430 \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f\",\r\n\tr.registration_source as \"\u0414\u0436\u0435\u0440\u0435\u043b\u043e \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f\",\r\n\tr.application_type as \"\u0422\u0438\u043f \u0437\u0430\u044f\u0432\u0438\",\r\n\tcount(0) as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c\"\r\nfrom report_registration_v r\r\nwhere\r\n  r.created_date >= '{{ r_created_date.start }}'\r\n  and r.created_date <= '{{ r_created_date.end }}'\r\ngroup by cube (r.created_date, r.registration_source, r.application_type)\r\norder by r.created_date, r.registration_source, r.application_type",
+      "id": 113,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "47d97ddd0a4dce508de6e3db557d0e0e",
+      "api_key": "ToSQYaCRh7O6kD7fecQn865M4mdNNAVotBTsAxei",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0437\u0430\u044f\u0432 \u0432 \u0440\u043e\u0437\u0440\u0456\u0437\u0456 \u0442\u0438\u043f\u0456\u0432 \u0442\u0430 \u0434\u0436\u0435\u0440\u0435\u043b \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f",
+      "created_at": "2021-05-13T14:03:03.851Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "r_created_date",
+            "title": "\u0412\u0438\u0431\u0435\u0440\u0456\u0442\u044c \u0434\u0430\u0442\u0438 \u0437/\u043f\u043e",
+            "global": false,
+            "value": {
+              "start": "2018-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:04.695Z",
+      "is_favorite": false,
+      "query": "select\r\n\tr.solution_type as \"\u0420\u0456\u0448\u0435\u043d\u043d\u044f\",\r\n    count(case when lab.accreditation_flag then 1 else null end) as \"\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\",\r\n    count(case when lab.accreditation_flag then null else 1 end) as \"\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\",\r\n    count(0) as \"\u0412\u0441\u044c\u043e\u0433\u043e\"\r\nfrom report_registration_v r\r\n\tinner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = r.laboratory_id\r\nwhere\r\n\tr.created_date >= '{{ r_created_date.start }}'\r\n\t\tand r.created_date <= '{{ r_created_date.end }}'\r\ngroup by cube (r.solution_type)\r\norder by r.solution_type",
+      "id": 112,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "e51411cbd7ee5e8e9bc3628d8e780091",
+      "api_key": "fgg24FiO4UCnqjWLig2xFgX56TrHpvni4Kxev8W4",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0437\u0430\u044f\u0432 \u0432 \u0440\u043e\u0437\u0440\u0456\u0437\u0456 \u0440\u0456\u0448\u0435\u043d\u044c \u0442\u0430 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u0439",
+      "created_at": "2021-05-13T14:03:03.748Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "r_created_date",
+            "title": " \u0412\u0432\u0435\u0434\u0456\u0442\u044c \u0434\u0430\u0442\u0438 \u0437/\u043f\u043e",
+            "global": false,
+            "value": {
+              "start": "2018-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:01.950Z",
+      "is_favorite": false,
+      "query": "select\r\n\tlab.ownership as \"\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456\",\r\n\tlab.management as \"\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f\",\r\n\tcount(0) as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c\"\r\nfrom report_laboratory_v lab\r\ngroup by cube (lab.ownership, lab.management)\r\norder by lab.ownership, lab.management",
+      "id": 111,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "eaf133e0b243ce9363e9180b88d1bd97",
+      "api_key": "U4bupeCa2ogLzeVBP48qHZSPxVngBSOI7v9QEzlU",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0439 \u0432 \u0440\u043e\u0437\u0440\u0456\u0437\u0456 \u0444\u043e\u0440\u043c \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456 \u0456 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+      "created_at": "2021-05-13T14:03:01.464Z",
+      "runtime": null,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:01.867Z",
+      "is_favorite": false,
+      "query": "with cte_fiz_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_fiz_factors_v as f\r\n\t\tinner join report_registration_v as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_bio_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_bio_factors_v as f\r\n\t\tinner join report_registration_v as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_him_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_him_factors_v as f\r\n\t\tinner join report_registration_v as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_trud_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_trud_factors_v as f\r\n\t\tinner join report_registration_v as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_last_solution as (\r\n\tselect\r\n\t\trank() over (PARTITION by r.laboratory_id order by r.solution_date desc) as rn,\r\n\t\tr.laboratory_id,\r\n\t\tr.solution_date,\r\n\t\tr.solution_type as solution,\r\n\t\tcase\r\n            when r.solution_type = '\u0412\u043d\u0435\u0441\u0442\u0438 \u0434\u043e \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n                then true\r\n            else false\r\n        end as certified\r\n\tfrom report_registration_v as r\r\n\twhere r.solution_date is not null\r\n),\r\ncte_last_on as (\r\n\tselect\r\n\t\trank() over (PARTITION by r.laboratory_id order by r.solution_date desc) as rn,\r\n\t\tr.laboratory_id,\r\n\t\tr.solution_date\r\n\tfrom report_registration_v as r\r\n\twhere r.solution_date is not null\r\n\t\tand r.solution_type = '\u0412\u043d\u0435\u0441\u0442\u0438 \u0434\u043e \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n),\r\ncte_last_off as (\r\n\tselect\r\n\t\trank() over (PARTITION by r.laboratory_id order by r.solution_date desc) as rn,\r\n\t\tr.laboratory_id,\r\n\t\tr.solution_date\r\n\tfrom report_registration_v as r\r\n\twhere r.solution_date is not null\r\n\t\tand r.solution_type = '\u0412\u0438\u043a\u043b\u044e\u0447\u0438\u0442\u0438 \u0437 \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n)\r\nselect\r\n    row_number() over(order by lab.name) as \"\u2116 \u0437.\u043f.\",\r\n    lab.name as \"\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lab.region as \"\u041e\u0431\u043b\u0430\u0441\u0442\u044c\",\r\n    lab.town as \"\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442\",\r\n    lab.address as \"\u0410\u0434\u0440\u0435\u0441\u0430\",\r\n    lab.phone_number as \"\u0422\u0435\u043b\u0435\u0444\u043e\u043d\",\r\n    lab.ownership as \"\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456\",\r\n    lab.management as \"\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f\",\r\n    fiz.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0456\u0437\u0438\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    him.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0445\u0456\u043c\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    bio.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0431\u0456\u043e\u043b\u043e\u0433\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    trud.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432 \u0442\u0440\u0443\u0434. \u043f\u0440\u043e\u0446\u0435\u0441\u0443\",\r\n    ls.certified as \"\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lon.solution_date as \"\u0414\u0430\u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u043d\u044f\",\r\n    loff.solution_date as \"\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f\",\r\n    lab.accreditation_flag as \"\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lab.accreditation_end_date as \"\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u0457\"\r\nfrom report_laboratory_v as lab\r\n    left join cte_fiz_factor as fiz\r\n\t    on fiz.laboratory_id = lab.laboratory_id\r\n\tleft join cte_bio_factor as bio\r\n\t    on bio.laboratory_id = lab.laboratory_id\r\n\tleft join cte_him_factor as him\r\n\t    on him.laboratory_id = lab.laboratory_id\r\n\tleft join cte_trud_factor as trud\r\n\t    on trud.laboratory_id = lab.laboratory_id\r\n    left join cte_last_solution as ls\r\n        on ls.rn = 1\r\n            and ls.laboratory_id = lab.laboratory_id\r\n    left join cte_last_on as lon\r\n        on lon.rn = 1\r\n            and lon.laboratory_id = lab.laboratory_id\r\n    left join cte_last_off as loff\r\n        on loff.rn = 1\r\n            and loff.laboratory_id = lab.laboratory_id\r\nwhere lower(lab.name) ~ case when '{{ lab_name }}' = '*' then '.*' else lower('{{ lab_name }}') end\r\n    and ('{{ lab_region }}' = '0000000000' OR lab.obl_code = '{{ lab_region }}')\r\n    and ('{{ lab_town }}' = uuid_nil() OR lab.koatuu_id = '{{ lab_town }}')\r\n    and ('{{ lab_ownership }}' = uuid_nil() OR lab.ownership_id = '{{ lab_ownership }}')\r\n    and (uuid_nil() in ({{ lab_management }}) OR lab.kopfg_id in ({{ lab_management }}))\r\n    and ('{{ certified }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' or ls.certified = case when '{{ certified }}' = '\u0410\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e' then true when '{{ certified }}' = '\u041d\u0435 \u0430\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e' then false end)\r\n    and ('{{ lab_accreditation_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' or lab.accreditation_flag = case when '{{ lab_accreditation_flag }}' = '\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e' then true when '{{ lab_accreditation_flag }}' = '\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e' then false end)\r\n    and coalesce(lon.solution_date, '{{ lon_solution_date.end }}') between '{{ lon_solution_date.start }}' and '{{ lon_solution_date.end }}'\r\n    and coalesce(loff.solution_date, '{{ loff_solution_date.end }}') between '{{ loff_solution_date.start }}' and '{{ loff_solution_date.end }}'\r\norder by lab.name;",
+      "id": 110,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "c3547035bc0a92bad171f78dafca3220",
+      "api_key": "EmAaJdpReP2Tl1aPzd39sFlpfIJHvdYhT26jMgF6",
+      "data_source_id": 1,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0406\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u044f \u043f\u0440\u043e \u0430\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u0456 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+      "created_at": "2021-05-13T14:03:01.346Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "lab_name",
+            "title": "\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          },
+          {
+            "name": "lab_region",
+            "title": "\u0412\u0438\u0431\u0456\u0440 \u043e\u0431\u043b\u0430\u0441\u0442\u0456",
+            "global": false,
+            "value": "0000000000",
+            "queryId": 105,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "lab_town",
+            "title": "\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442",
+            "global": false,
+            "value": "00000000-0000-0000-0000-000000000000",
+            "queryId": 106,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "lab_ownership",
+            "title": "\u0412\u0438\u0431\u0456\u0440 \u0444\u043e\u0440\u043c\u0438 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456",
+            "global": false,
+            "value": "00000000-0000-0000-0000-000000000000",
+            "queryId": 103,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "name": "lab_management",
+            "title": "\u0412\u0438\u0431\u0456\u0440 \u0444\u043e\u0440\u043c\u0438 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+            "global": false,
+            "value": [
+              "00000000-0000-0000-0000-000000000000"
+            ],
+            "queryId": 108,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "certified",
+            "title": "\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+            "value": "\u0410\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0410\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e\n\u041d\u0435 \u0430\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "lab_accreditation_flag",
+            "title": "\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+            "global": false,
+            "value": "\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\n\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e",
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "lon_solution_date",
+            "title": "\u0414\u0430\u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u043d\u044f",
+            "global": false,
+            "value": {
+              "start": "2018-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          },
+          {
+            "name": "loff_solution_date",
+            "title": "\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f",
+            "global": false,
+            "value": {
+              "start": "2018-01-01",
+              "end": "2021-12-31"
+            },
+            "type": "date-range",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:03:01.787Z",
+      "is_favorite": false,
+      "query": "select\r\n    count(case when lab.accreditation_flag then 1 else null end) as \"\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\",\r\n    count(case when lab.accreditation_flag then null else 1 end) as \"\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\",\r\n    count(0) as \"\u0412\u0441\u044c\u043e\u0433\u043e\"\r\nfrom report_laboratory_v lab",
+      "id": 109,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "2a0bd04ba4ddf234ad3c478ab97b24d8",
+      "api_key": "RqCI4rJSiMS55tGLU4l0tVD632PNCYBYiqZPLlNO",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u0438\u0445 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0439",
+      "created_at": "2021-05-13T14:03:01.241Z",
+      "runtime": null,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:54:19.938Z",
+      "updated_at": "2021-05-17T04:52:02.233Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        kopfg_id AS value,\n        name AS name\n    FROM report_kopfg_v\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+      "id": 108,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "90f65953e6f174c6de25560f935e491e",
+      "api_key": "ST9Hb8Bbq5hhSLtTxqc3u63KBp1WR2n28Ryht3Np",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1883,
+      "schedule": {
+        "interval": 600,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0444\u043e\u0440\u043c\u0438 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+      "created_at": "2021-05-13T14:02:58.271Z",
+      "runtime": 0.0361189842224121,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T15:02:50.217Z",
+      "updated_at": "2021-05-18T15:01:08.572Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        research_id AS value,\n        research_type AS name\n    FROM report_research_v\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+      "id": 107,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "2f51d4346996deec28d79ab09d1915bb",
+      "api_key": "UVVJO1OqcejQcgyYRW1po5q6sCeKfBBB7uYQdtN8",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1892,
+      "schedule": {
+        "interval": 60,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0434\u043e\u0441\u043b\u0456\u0434\u0436\u0435\u043d\u044c",
+      "created_at": "2021-05-13T14:02:58.163Z",
+      "runtime": 0.0150129795074463,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:53:50.287Z",
+      "updated_at": "2021-05-18T15:10:08.651Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION\n    SELECT \n        2 AS rn,\n        koatuu_id AS value,\n        town AS name\n    FROM report_laboratory_v\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+      "id": 106,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "698c6f19a31996db914f5606f8916f06",
+      "api_key": "AGO0aZqgKYE7R0pmfilAiQgPkgPdtsl8NjQ0kxtP",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1881,
+      "schedule": {
+        "interval": 600,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u043d\u0430\u0441\u0435\u043b\u0435\u043d\u043e\u0433\u043e \u043f\u0443\u043d\u043a\u0442\u0443",
+      "created_at": "2021-05-13T14:02:58.060Z",
+      "runtime": 0.038564920425415,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:03:01.241Z",
+      "updated_at": "2021-05-13T14:02:59.291Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\r\n    SELECT\r\n        -1 AS rn,\r\n        '0000000000' AS value,\r\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\r\n    UNION ALL\r\n    SELECT \r\n        2 AS rn,\r\n        code AS value,\r\n        name AS name\r\n    FROM report_koatuu_v WHERE type = '\u041e'\r\n)\r\nSELECT value, name\r\nFROM cte\r\nORDER BY rn, name;",
+      "id": 105,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "14cf291aef54871a6de9d079e122d9db",
+      "api_key": "JNwBxVtPog1QuMMqfdL6IZ7WnYqSY9j2e1lwQQkI",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1806,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u043e\u0431\u043b\u0430\u0441\u0442\u0456",
+      "created_at": "2021-05-13T14:02:57.957Z",
+      "runtime": 0.0283439159393311,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T15:00:50.141Z",
+      "updated_at": "2021-05-18T15:05:08.506Z",
+      "is_favorite": false,
+      "query": "with cte_name as (\n    select\n        -1 as rn,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' as name\n    union \n    select distinct\n        2 as rn,\n        registration_source as name\n    from report_registration_v\n)\nselect\n    name\nfrom cte_name\norder by rn, name;\n",
+      "id": 104,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "6b024a87d33fa17adb4b91ae7471fc6c",
+      "api_key": "wB88hZoD8sxcabl6eq1TgTddN5SkiILa5M6tJGCN",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1890,
+      "schedule": {
+        "interval": 300,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0434\u0436\u0435\u0440\u0435\u043b\u0430 \u043d\u0430\u0434\u0445\u043e\u0434\u0436\u0435\u043d\u043d\u044f",
+      "created_at": "2021-05-13T14:02:57.857Z",
+      "runtime": 0.0172879695892334,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T15:03:50.175Z",
+      "updated_at": "2021-05-18T15:10:08.762Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        ownership_id AS value,\n        name AS name\n    FROM report_ownership_v\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+      "id": 103,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "ef1fcc14dc47c9ba50e85edda4577622",
+      "api_key": "OswJ6LuwesAAjAT6JOmoA66oqmbLrltP57xweyyt",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1894,
+      "schedule": {
+        "interval": 600,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0444\u043e\u0440\u043c\u0438 \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456",
+      "created_at": "2021-05-13T14:02:57.754Z",
+      "runtime": 0.0137259960174561,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T15:03:50.175Z",
+      "updated_at": "2021-05-18T15:10:08.619Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        solution_type_id AS value,\n        name AS name\n    FROM report_solution_type_v\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+      "id": 102,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "24b5715d2fe215d6a96b7fff0521f45d",
+      "api_key": "IFljUebWOjjjAFfxJOPPagwwk6GfBOHeng8EOCyU",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1893,
+      "schedule": {
+        "interval": 600,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0440\u0456\u0448\u0435\u043d\u043d\u044f",
+      "created_at": "2021-05-13T14:02:57.651Z",
+      "runtime": 0.0176899433135986,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:53:50.931Z",
+      "updated_at": "2021-05-18T15:10:08.686Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        uuid_nil() AS value,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION ALL\n    SELECT \n        2 AS rn,\n        application_type_id AS value,\n        name AS name\n    FROM report_application_type_v\n)\nSELECT value, name\nFROM cte\nORDER BY rn, name;",
+      "id": 101,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "271b240c98dd90405ae09f6449ad2d31",
+      "api_key": "GAjVhh0QxzauYQwIgxFvlVNTfbnmS0czalBchXoE",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1882,
+      "schedule": {
+        "interval": 600,
+        "until": null,
+        "day_of_week": null,
+        "time": null
+      },
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0442\u0438\u043f\u0443 \u0437\u0430\u044f\u0432",
+      "created_at": "2021-05-13T14:02:57.545Z",
+      "runtime": 0.027763843536377,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:02:56.398Z",
+      "is_favorite": false,
+      "query": "SELECT timestamp AS \"\u0414\u0430\u0442\u0430 \u0442\u0430 \u0447\u0430\u0441 \u043e\u043f\u0435\u0440\u0430\u0446\u0456\u0457\",\n       request_id AS \"\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u0437\u0430\u043f\u0438\u0442\u0430\",\n       replace(name, 'DB request. Method: ', '') AS \"\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u043f\u043e\u0434\u0456\u0457 \u0432 \u0411\u0414\",\n       application \"\u0414\u043e\u0434\u0430\u0442\u043e\u043a\",\n       user_id \"\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\",\n       user_name \"\u041a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\",\n       action \"\u041d\u0430\u0437\u0432\u0430 \u043f\u043e\u0434\u0456\u0457\",\n       step \"\u041a\u0440\u043e\u043a\u0438 \u0432\u0438\u043a\u043e\u043d\u0430\u043d\u043d\u044f \u043e\u043f\u0435\u0440\u0430\u0446\u0456\u0457\",\n       tablename \"\u041d\u0430\u0437\u0432\u0430 \u0441\u0443\u0442\u043d\u043e\u0441\u0442\u0456\",\n       row_id \"ID \u043e\u0431'\u0454\u043a\u0442\u0430\",\n       translate(fields, '[]\"', '') \"\u041f\u043e\u043b\u044f \u043e\u0431'\u0454\u043a\u0442\u0430\"\n  FROM audit_event_user_action_v\n WHERE name LIKE 'DB request%'\n  AND timestamp BETWEEN '{{ timestamp.start }}' AND '{{ timestamp.end }}'\n  AND lower(request_id) ~ CASE WHEN '{{ request_id }}' = '*' THEN '.*' ELSE lower('{{ request_id }}') END\n  AND lower(name) ~ CASE WHEN '{{ name }}' = '*' THEN '.*' ELSE lower('{{ name }}') END\n  AND ( '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' IN ({{ action }})   OR action IN ({{action}}) )\n  AND lower(user_name) ~ CASE WHEN '{{ user_name }}' = '*' THEN '.*' ELSE lower('{{ user_name }}') END\n  AND ( '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' IN ({{ step }}) OR step IN ({{step}}) )\n  AND lower(tablename) ~ CASE WHEN '{{ table_name }}' = '*' THEN '.*' ELSE lower('{{ table_name }}') END\n  AND lower(row_id) ~ CASE WHEN '{{ row_id }}' = '*' THEN '.*' ELSE lower('{{ row_id }}') END",
+      "id": 100,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "bb0a9e2b44d0f34edc86b0afed4cb732",
+      "api_key": "TC3P3Bl5njTB30ublq7VSLlYsQ1OR4hko7qx40qj",
+      "data_source_id": 2,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0410\u0443\u0434\u0438\u0442 \u043f\u043e\u0434\u0456\u0439 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\u0430",
+      "created_at": "2021-05-13T14:02:56.202Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "value": {
+              "start": "2021-01-01 00:00",
+              "end": "2021-12-31 23:59"
+            },
+            "type": "datetime-range",
+            "name": "timestamp",
+            "locals": [],
+            "title": "\u0414\u0430\u0442\u0430 \u0442\u0430 \u0447\u0430\u0441 \u043e\u043f\u0435\u0440\u0430\u0446\u0456\u0457"
+          },
+          {
+            "value": "*",
+            "type": "text",
+            "name": "request_id",
+            "locals": [],
+            "title": "\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u0437\u0430\u043f\u0438\u0442\u0430"
+          },
+          {
+            "value": "*",
+            "type": "text",
+            "name": "name",
+            "locals": [],
+            "title": "\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u043f\u043e\u0434\u0456\u0457 \u0432 \u0411\u0414"
+          },
+          {
+            "name": "user_name",
+            "title": "\u041a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          },
+          {
+            "name": "action",
+            "title": "\u041d\u0430\u0437\u0432\u0430 \u043f\u043e\u0434\u0456\u0457 ",
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "value": [
+              "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )"
+            ],
+            "queryId": 98,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "step",
+            "title": "\u041a\u0440\u043e\u043a\u0438 \u0432\u0438\u043a\u043e\u043d\u0430\u043d\u043d\u044f \u043e\u043f\u0435\u0440\u0430\u0446\u0456\u0457",
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "value": [
+              "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )"
+            ],
+            "queryId": 97,
+            "type": "query",
+            "locals": []
+          },
+          {
+            "name": "table_name",
+            "title": "\u041d\u0430\u0437\u0432\u0430 \u0441\u0443\u0442\u043d\u043e\u0441\u0442\u0456",
+            "global": false,
+            "value": "*",
+            "type": "text",
+            "locals": []
+          },
+          {
+            "locals": [],
+            "type": "text",
+            "name": "row_id",
+            "value": "*",
+            "title": "ID \u041e\u0431'\u0454\u043a\u0442\u0430"
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-13T14:02:55.395Z",
+      "is_favorite": false,
+      "query": "SELECT timestamp AS \"\u0414\u0430\u0442\u0430 \u0442\u0430 \u0447\u0430\u0441 \u043e\u043f\u0435\u0440\u0430\u0446\u0456\u0457\",\n       request_id AS \"\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u0437\u0430\u043f\u0438\u0442\u0430\",\n       replace(name, 'DB request. Method: ', '') AS \"\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u043f\u043e\u0434\u0456\u0457 \u0432 \u0411\u0414\",\n       application \"\u0414\u043e\u0434\u0430\u0442\u043e\u043a\",\n       user_id \"\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\",\n       user_name \"\u041a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\",\n       action \"\u041d\u0430\u0437\u0432\u0430 \u043f\u043e\u0434\u0456\u0457\"\n  FROM audit_event_security_event_v\n WHERE AND timestamp BETWEEN '{{ timestamp.start }}' AND '{{ timestamp.end }}'\n  AND lower(request_id) ~ CASE WHEN '{{ request_id }}' = '*' then '.*' ELSE lower('{{ request_id }}') END\n  AND lower(name) ~ CASE WHEN '{{ name }}' = '*' then '.*' ELSE lower('{{ name }}') END\n  AND ( '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' IN ({{ action }})   OR action IN ({{action}}) )",
+      "id": 99,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "1162146084e505b51ec8f591e455bc87",
+      "api_key": "kT2eaWNMR5h2VA2LANLj43NbRspESYTWLnrcQD5b",
+      "data_source_id": 2,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0410\u0443\u0434\u0438\u0442 \u043f\u043e\u0434\u0456\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u0438",
+      "created_at": "2021-05-13T14:02:55.146Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "locals": [],
+            "type": "datetime-range",
+            "name": "timestamp",
+            "value": {
+              "start": "2021-01-01 00:00",
+              "end": "2021-12-31 23:59"
+            },
+            "title": "\u0414\u0430\u0442\u0430 \u0442\u0430 \u0447\u0430\u0441 \u043e\u043f\u0435\u0440\u0430\u0446\u0456\u0457"
+          },
+          {
+            "locals": [],
+            "type": "text",
+            "name": "request_id",
+            "value": "*",
+            "title": "\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u0437\u0430\u043f\u0438\u0442\u0430"
+          },
+          {
+            "locals": [],
+            "type": "text",
+            "name": "name",
+            "value": "*",
+            "title": "\u0406\u0434\u0435\u043d\u0442\u0438\u0444\u0456\u043a\u0430\u0442\u043e\u0440 \u043f\u043e\u0434\u0456\u0457 \u0432 \u0411\u0414"
+          },
+          {
+            "name": "action",
+            "title": "\u041d\u0430\u0437\u0432\u0430 \u043f\u043e\u0434\u0456\u0457 ",
+            "multiValuesOptions": {
+              "prefix": "'",
+              "separator": ",",
+              "suffix": "'"
+            },
+            "value": [
+              "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )"
+            ],
+            "queryId": 96,
+            "type": "query",
+            "locals": []
+          }
+        ]
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:02:54.608Z",
+      "updated_at": "2021-05-13T14:02:54.268Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT -1 AS rn,\n           '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION\n    SELECT 2 AS rn,\n           action AS name\n      FROM audit_event_user_action_v\n     WHERE name LIKE 'DB request%'\n)\nSELECT name\nFROM cte\nORDER BY rn, name;",
+      "id": 98,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "6022faaa88ab1ef659daf1c4b91c90cd",
+      "api_key": "PiZVsLh0Cyrvw2MAl5YqrefONgTIEta35HHyQD6w",
+      "data_source_id": 2,
+      "is_safe": true,
+      "latest_query_data_id": 1801,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0446\u044c\u043a\u043e\u0457 \u043f\u043e\u0434\u0456\u0457",
+      "created_at": "2021-05-13T14:02:53.741Z",
+      "runtime": 0.0212781429290771,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:02:54.540Z",
+      "updated_at": "2021-05-13T14:02:54.184Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT -1 AS rn,\n           '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION\n    SELECT 2 AS rn,\n           step AS name\n      FROM audit_event_user_action_v\n     WHERE name LIKE 'DB request%'\n)\nSELECT name\nFROM cte\nORDER BY rn, name;",
+      "id": 97,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "9af145b476adb860648ac87260760101",
+      "api_key": "PeBAFyzGxZGiGIQNy00jnSM0XeHzFGrwtMRBfIPF",
+      "data_source_id": 2,
+      "is_safe": true,
+      "latest_query_data_id": 1800,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u043a\u0440\u043e\u043a\u0456\u0432 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0446\u044c\u043a\u043e\u0457 \u043e\u043f\u0435\u0440\u0430\u0446\u0457",
+      "created_at": "2021-05-13T14:02:53.616Z",
+      "runtime": 0.0278289318084717,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T14:02:54.432Z",
+      "updated_at": "2021-05-13T14:02:54.097Z",
+      "is_favorite": false,
+      "query": "WITH cte AS (\n    SELECT\n        -1 AS rn,\n        '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' AS name\n    UNION\n    SELECT \n        2 AS rn,\n        action AS name\n    FROM audit_event_security_event_v\n)\nSELECT name\nFROM cte\nORDER BY rn, name;",
+      "id": 96,
+      "description": null,
+      "last_modified_by_id": 1,
+      "tags": [],
+      "version": 1,
+      "query_hash": "be7217145d34c23b80821b4e9d5140c9",
+      "api_key": "NysaTtlG60dTC74azj3R5vWuTaN3Ea5JpPXvMJDA",
+      "data_source_id": 2,
+      "is_safe": true,
+      "latest_query_data_id": 1799,
+      "schedule": null,
+      "user": {
+        "auth_type": "password",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T19:57:14.781Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 1,
+        "name": "redash-admin",
+        "created_at": "2021-05-06T14:10:38.176Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T19:56:54Z",
+        "email": "user@mail.com"
+      },
+      "is_draft": false,
+      "name": "\u0412\u0438\u0431\u0456\u0440 \u0441\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0457 \u043f\u043e\u0434\u0456\u0457",
+      "created_at": "2021-05-13T14:02:53.506Z",
+      "runtime": 0.0342700481414795,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": "2021-05-13T13:58:10.587Z",
+      "updated_at": "2021-05-13T13:58:33.975Z",
+      "is_favorite": false,
+      "query": "SELECT '<details><summary>\u041f\u0435\u0440\u0435\u043b\u0456\u043a</summary>'|| name ||'</details>' as name\nFROM report_him_factors_v",
+      "id": 95,
+      "description": null,
+      "last_modified_by_id": 2,
+      "tags": [],
+      "version": 1,
+      "query_hash": "28aec7d6ceb39faae595ec6cf1eaea15",
+      "api_key": "pwNYfZ6zJzP9bioFBZdmlhVnIwKeDcRGcMQ3KRMq",
+      "data_source_id": 1,
+      "is_safe": true,
+      "latest_query_data_id": 1798,
+      "schedule": null,
+      "user": {
+        "auth_type": "external",
+        "is_disabled": false,
+        "updated_at": "2021-05-18T09:34:01.217Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/1600b9334170d7d73614e467941ca78d?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          4,
+          2
+        ],
+        "id": 2,
+        "name": "oleksandr_vasylenko4",
+        "created_at": "2021-05-06T14:12:02.977Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-18T09:33:05Z",
+        "email": "oleksandr_vasylenko4@epam.com"
+      },
+      "is_draft": true,
+      "name": "New Query",
+      "created_at": "2021-05-13T13:58:21.467Z",
+      "runtime": 0.167375087738037,
+      "options": {
+        "parameters": []
+      }
+    },
+    {
+      "is_archived": false,
+      "retrieved_at": null,
+      "updated_at": "2021-05-12T09:39:35.158Z",
+      "is_favorite": false,
+      "query": "with cte_research as (\r\n\tselect \r\n\t\tsr.staff_id,\r\n\t\tstring_agg(sr.research_type, ', ') as research_type\r\n\tfrom report_staff_research_v as sr\r\n\tgroup by sr.staff_id\r\n)    \r\nselect\r\n    row_number() over() as \"\u2116 \u0437.\u043f.\",\r\n    lab.name as \"\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    s.full_name as \"\u041f\u0406\u0411 \u043f\u0440\u0430\u0446\u0456\u0432\u043d\u0438\u043a\u0430\",\r\n    s.hygienist_flag as \"\u0413\u0456\u0433\u0456\u0454\u043d\u0456\u0441\u0442\",\r\n    (not s.hygienist_flag) as \"\u041b\u0430\u0431\u043e\u0440\u0430\u043d\u0442\",\r\n    s.full_time_flag as \"\u041e\u0441\u043d\u043e\u0432\u043d\u0435 \u043c\u0456\u0441\u0446\u0435 \u0440\u043e\u0431\u043e\u0442\u0438\",\r\n    s.salary as \"\u0421\u0442\u0430\u0432\u043a\u0430\",\r\n    s.fixed_term_contract_flag as \"\u0422\u0440\u0443\u0434. \u0434\u043e\u0433\u043e\u0432\u0456\u0440 \u0441\u0442\u0440\u043e\u043a\u043e\u0432\u0438\u0439\",\r\n    s.contract_end_date as \"\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0434\u043e\u0433\u043e\u0432\u043e\u0440\u0443\",\r\n    cr.research_type as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0434\u043e\u0441\u043b\u0456\u0434\u0436\u0435\u043d\u044c\",\r\n    s.specialization_date as \"\u0414\u0430\u0442\u0430 \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457\",\r\n    s.specialization_end_date as \"\u0417\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0441\u043f\u0435\u0446\u0456\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u0457\"\r\nfrom report_staff_v s\r\n    inner join report_laboratory_v as lab\r\n\t\ton lab.laboratory_id = s.laboratory_id\r\n\tleft join cte_research cr\r\n\t\ton cr.staff_id = s.staff_id\r\nwhere lower(lab.name) ~ case when '{{ lab_name }}' = '*' then '.*' else lower('{{ lab_name }}') end\r\n    and lower(s.full_name) ~ case when '{{ s_full_name }}' = '*' then '.*' else lower('{{ s_full_name }}') end\r\n    and ('{{ s_hygienist_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or (s.hygienist_flag and '{{ s_hygienist_flag }}' = '\u0422\u0430\u043a')\r\n        or ((not s.hygienist_flag) and '{{ s_hygienist_flag }}' = '\u041d\u0456'))\r\n    and ('{{ s_laborant_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or ((not s.hygienist_flag) and '{{ s_laborant_flag }}' = '\u0422\u0430\u043a')\r\n        or (s.hygienist_flag and '{{ s_laborant_flag }}' = '\u041d\u0456'))\r\n    and ('{{ s_full_time_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or (s.full_time_flag and '{{ s_full_time_flag }}' = '\u0422\u0430\u043a')\r\n        or ((not s.full_time_flag) and '{{ s_full_time_flag }}' = '\u041d\u0456'))\r\n    and ('{{ s_fixed_term_contract_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )'\r\n        or (s.fixed_term_contract_flag and '{{ s_fixed_term_contract_flag }}' = '\u0422\u0430\u043a')\r\n        or ((not s.fixed_term_contract_flag) and '{{ s_fixed_term_contract_flag }}' = '\u041d\u0456'))\r\n   ",
+      "id": 25,
+      "description": null,
+      "last_modified_by_id": 4,
+      "tags": [],
+      "version": 1,
+      "query_hash": "1b9178ca838496c7ae7e275d2e8f187f",
+      "api_key": "rpBtMsInH09XIPGnXotOWXNHd9hI9CCnTyP4amWb",
+      "data_source_id": 1,
+      "is_safe": false,
+      "latest_query_data_id": null,
+      "schedule": null,
+      "user": {
+        "auth_type": "external",
+        "is_disabled": false,
+        "updated_at": "2021-05-13T12:37:14.395Z",
+        "profile_image_url": "https://www.gravatar.com/avatar/8012fe6ebdd4d61cedf4780ed91850d8?s=40&d=identicon",
+        "is_invitation_pending": false,
+        "groups": [
+          1,
+          2
+        ],
+        "id": 4,
+        "name": "kseniia_surhan",
+        "created_at": "2021-05-11T07:45:11.860Z",
+        "disabled_at": null,
+        "is_email_verified": true,
+        "active_at": "2021-05-13T12:36:41Z",
+        "email": "kseniia_surhan@epam.com"
+      },
+      "is_draft": true,
+      "name": "New Query",
+      "created_at": "2021-05-12T09:14:44.059Z",
+      "runtime": null,
+      "options": {
+        "parameters": [
+          {
+            "name": "lab_name",
+            "title": "lab_name",
+            "global": false,
+            "value": "*",
+            "locals": [],
+            "type": "text",
+            "parentQueryId": 25
+          },
+          {
+            "name": "s_full_name",
+            "title": "s_full_name",
+            "global": false,
+            "value": "*",
+            "locals": [],
+            "type": "text",
+            "parentQueryId": 25
+          },
+          {
+            "name": "s_hygienist_flag",
+            "title": "s_hygienist_flag",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "parentQueryId": 25,
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "s_laborant_flag",
+            "title": "s_laborant_flag",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "parentQueryId": 25,
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "s_full_time_flag",
+            "title": "s_full_time_flag",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "parentQueryId": 25,
+            "type": "enum",
+            "locals": []
+          },
+          {
+            "name": "s_fixed_term_contract_flag",
+            "title": "s_fixed_term_contract_flag",
+            "global": false,
+            "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+            "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0422\u0430\u043a\n\u041d\u0456",
+            "parentQueryId": 25,
+            "type": "enum",
+            "locals": []
+          }
+        ]
+      }
+    }
+  ]
+}

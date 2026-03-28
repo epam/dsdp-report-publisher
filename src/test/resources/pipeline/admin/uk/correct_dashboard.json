@@ -1,0 +1,890 @@
+{
+  "tags": [],
+  "is_archived": false,
+  "updated_at": "2021-03-19T16:21:06.016Z",
+  "is_favorite": false,
+  "user": {
+    "auth_type": "external",
+    "is_disabled": false,
+    "updated_at": "2021-03-19T16:34:15.535Z",
+    "profile_image_url": "https://www.gravatar.com/avatar/0da1aca2416c5dddc537775a96dc9cf1?s=40&d=identicon",
+    "is_invitation_pending": false,
+    "groups": [
+      1,
+      2
+    ],
+    "id": 3,
+    "name": "mykhailo_bilyi",
+    "created_at": "2021-03-16T08:11:20.792Z",
+    "disabled_at": null,
+    "is_email_verified": true,
+    "active_at": "2021-03-19T16:33:31Z",
+    "email": "mykhailo_bilyi@epam.com"
+  },
+  "layout": [],
+  "is_draft": false,
+  "id": 21,
+  "can_edit": true,
+  "user_id": 3,
+  "name": "\u0424\u0456\u043b\u044c\u0442\u0440 \u0410\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u0456 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+  "created_at": "2021-03-19T16:18:24.328Z",
+  "slug": "-_16",
+  "version": 2,
+  "widgets": [
+    {
+      "visualization": {
+        "description": "",
+        "created_at": "2021-03-16T18:00:36.904Z",
+        "updated_at": "2021-03-19T16:20:09.350Z",
+        "id": 30,
+        "query": {
+          "user": {
+            "auth_type": "password",
+            "is_disabled": false,
+            "updated_at": "2021-03-19T15:29:15.365Z",
+            "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+            "is_invitation_pending": false,
+            "groups": [
+              1,
+              2
+            ],
+            "id": 1,
+            "name": "redash-admin",
+            "created_at": "2021-03-15T19:06:31.302Z",
+            "disabled_at": null,
+            "is_email_verified": true,
+            "active_at": "2021-03-19T15:28:41Z",
+            "email": "user@mail.com"
+          },
+          "created_at": "2021-03-16T18:00:36.904Z",
+          "latest_query_data_id": 81,
+          "schedule": null,
+          "description": null,
+          "tags": [],
+          "updated_at": "2021-03-16T18:00:37.256Z",
+          "last_modified_by": {
+            "auth_type": "password",
+            "is_disabled": false,
+            "updated_at": "2021-03-19T15:29:15.365Z",
+            "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+            "is_invitation_pending": false,
+            "groups": [
+              1,
+              2
+            ],
+            "id": 1,
+            "name": "redash-admin",
+            "created_at": "2021-03-15T19:06:31.302Z",
+            "disabled_at": null,
+            "is_email_verified": true,
+            "active_at": "2021-03-19T15:28:41Z",
+            "email": "user@mail.com"
+          },
+          "options": {
+            "parameters": []
+          },
+          "is_safe": true,
+          "version": 1,
+          "query_hash": "2a0bd04ba4ddf234ad3c478ab97b24d8",
+          "is_archived": false,
+          "query": "select\r\n    count(case when lab.accreditation_flag then 1 else null end) as \"\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\",\r\n    count(case when lab.accreditation_flag then null else 1 end) as \"\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\",\r\n    count(0) as \"\u0412\u0441\u044c\u043e\u0433\u043e\"\r\nfrom report_laboratory_v lab",
+          "api_key": "ucDHlXJczf8Rr1ppkv3gSGqkAOYgxdkt1O5mRPgi",
+          "is_draft": false,
+          "id": 30,
+          "data_source_id": 1,
+          "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u0438\u0445 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0439"
+        },
+        "type": "TABLE",
+        "options": {},
+        "name": "Table"
+      },
+      "text": "",
+      "created_at": "2021-03-19T16:20:09.350Z",
+      "updated_at": "2021-03-19T16:20:20.371Z",
+      "options": {
+        "parameterMappings": {},
+        "isHidden": false,
+        "position": {
+          "autoHeight": true,
+          "sizeX": 2,
+          "sizeY": 5,
+          "maxSizeY": 1000,
+          "maxSizeX": 6,
+          "minSizeY": 1,
+          "minSizeX": 2,
+          "col": 4,
+          "row": 0
+        }
+      },
+      "dashboard_id": 21,
+      "width": 1,
+      "id": 60
+    },
+    {
+      "visualization": {
+        "description": "",
+        "created_at": "2021-03-16T18:00:37.645Z",
+        "updated_at": "2021-03-19T16:18:48.425Z",
+        "id": 32,
+        "query": {
+          "user": {
+            "auth_type": "password",
+            "is_disabled": false,
+            "updated_at": "2021-03-19T15:29:15.365Z",
+            "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+            "is_invitation_pending": false,
+            "groups": [
+              1,
+              2
+            ],
+            "id": 1,
+            "name": "redash-admin",
+            "created_at": "2021-03-15T19:06:31.302Z",
+            "disabled_at": null,
+            "is_email_verified": true,
+            "active_at": "2021-03-19T15:28:41Z",
+            "email": "user@mail.com"
+          },
+          "created_at": "2021-03-16T18:00:37.645Z",
+          "latest_query_data_id": null,
+          "schedule": null,
+          "description": null,
+          "tags": [],
+          "updated_at": "2021-03-19T15:56:05.820Z",
+          "last_modified_by": {
+            "auth_type": "external",
+            "is_disabled": false,
+            "updated_at": "2021-03-19T16:34:15.535Z",
+            "profile_image_url": "https://www.gravatar.com/avatar/0da1aca2416c5dddc537775a96dc9cf1?s=40&d=identicon",
+            "is_invitation_pending": false,
+            "groups": [
+              1,
+              2
+            ],
+            "id": 3,
+            "name": "mykhailo_bilyi",
+            "created_at": "2021-03-16T08:11:20.792Z",
+            "disabled_at": null,
+            "is_email_verified": true,
+            "active_at": "2021-03-19T16:33:31Z",
+            "email": "mykhailo_bilyi@epam.com"
+          },
+          "options": {
+            "parameters": [
+              {
+                "name": "lab_name",
+                "title": "\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+                "global": false,
+                "value": "*",
+                "locals": [],
+                "type": "text",
+                "parentQueryId": 32
+              },
+              {
+                "name": "lab_region",
+                "title": "\u0412\u0438\u0431\u0456\u0440 \u043e\u0431\u043b\u0430\u0441\u0442\u0456",
+                "global": false,
+                "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+                "queryId": 24,
+                "parentQueryId": 32,
+                "type": "query",
+                "locals": []
+              },
+              {
+                "name": "lab_town",
+                "title": "\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442",
+                "global": false,
+                "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+                "queryId": 52,
+                "parentQueryId": 32,
+                "type": "query",
+                "locals": []
+              },
+              {
+                "name": "lab_ownership",
+                "title": "\u0412\u0438\u0431\u0456\u0440 \u0444\u043e\u0440\u043c\u0438 \u0432\u043b\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0456",
+                "global": false,
+                "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+                "queryId": 25,
+                "parentQueryId": 32,
+                "type": "query",
+                "locals": []
+              },
+              {
+                "name": "lab_management",
+                "multiValuesOptions": {
+                  "prefix": "'",
+                  "separator": ",",
+                  "suffix": "'"
+                },
+                "global": false,
+                "value": [
+                  "\u0410\u043a\u0446\u0456\u043e\u043d\u0435\u0440\u043d\u0435 \u0442\u043e\u0432\u0430\u0440\u0438\u0441\u0442\u0432\u043e",
+                  "\u0414\u0435\u0440\u0436\u0430\u0432\u043d\u0435 \u043f\u0456\u0434\u043f\u0440\u0438\u0454\u043c\u0441\u0442\u0432\u043e",
+                  "\u0406\u043d\u0448\u0430 \u043e\u0440\u0433\u0430\u043d\u0456\u0437\u0430\u0446\u0456\u0439\u043d\u043e-\u043f\u0440\u0430\u0432\u043e\u0432\u0430 \u0444\u043e\u0440\u043c\u0430",
+                  "\u041a\u0430\u0437\u0435\u043d\u043d\u0435 \u043f\u0456\u0434\u043f\u0440\u0438\u0454\u043c\u0441\u0442\u0432\u043e",
+                  "\u041a\u043e\u043c\u0443\u043d\u0430\u043b\u044c\u043d\u0435 \u043f\u0456\u0434\u043f\u0440\u0438\u0454\u043c\u0441\u0442\u0432\u043e",
+                  "\u041f\u0456\u0434\u043f\u0440\u0438\u0454\u043c\u0435\u0446\u044c-\u0444\u0456\u0437\u0438\u0447\u043d\u0430 \u043e\u0441\u043e\u0431\u0430",
+                  "\u041f\u0440\u0438\u0432\u0430\u0442\u043d\u0435 \u043f\u0456\u0434\u043f\u0440\u0438\u0454\u043c\u0441\u0442\u0432\u043e",
+                  "\u0422\u043e\u0432\u0430\u0440\u0438\u0441\u0442\u0432\u043e \u0437 \u043e\u0431\u043c\u0435\u0436\u0435\u043d\u043e\u044e \u0432\u0456\u0434\u043f\u043e\u0432\u0456\u0434\u0430\u043b\u044c\u043d\u0456\u0441\u0442\u044e"
+                ],
+                "queryId": 53,
+                "parentQueryId": 32,
+                "title": "\u0412\u0438\u0431\u0456\u0440 \u0444\u043e\u0440\u043c\u0438 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+                "type": "query",
+                "locals": []
+              },
+              {
+                "name": "certified",
+                "title": "\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+                "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+                "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0410\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e\n\u041d\u0435 \u0430\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e",
+                "locals": [],
+                "type": "enum",
+                "parentQueryId": 32
+              },
+              {
+                "name": "lab_accreditation_flag",
+                "title": "\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+                "global": false,
+                "value": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )",
+                "enumOptions": "( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )\n\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e\n\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e",
+                "parentQueryId": 32,
+                "type": "enum",
+                "locals": []
+              },
+              {
+                "name": "lon_solution_date",
+                "title": "\u0414\u0430\u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u043d\u044f",
+                "global": false,
+                "value": {
+                  "start": "2018-01-01",
+                  "end": "2021-12-31"
+                },
+                "locals": [],
+                "type": "date-range",
+                "parentQueryId": 32
+              },
+              {
+                "name": "loff_solution_date",
+                "title": "\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f",
+                "global": false,
+                "value": {
+                  "start": "2018-01-01",
+                  "end": "2021-12-31"
+                },
+                "locals": [],
+                "type": "date-range",
+                "parentQueryId": 32
+              }
+            ]
+          },
+          "is_safe": false,
+          "version": 1,
+          "query_hash": "16f12795347de6092d78f8cfdbdd2b51",
+          "is_archived": false,
+          "query": "with cte_fiz_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_fiz_factors_v as f\r\n\t\tinner join registration as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_bio_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_bio_factors_v as f\r\n\t\tinner join registration as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_him_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_him_factors_v as f\r\n\t\tinner join registration as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_trud_factor as (\r\n\tselect\r\n\t\tr.laboratory_id,\r\n\t\tstring_agg(f.name, ', ') as factor_name\r\n\tfrom report_trud_factors_v as f\r\n\t\tinner join registration as r\r\n\t\t\ton r.registration_id = f.registration_id\r\n\tgroup by r.laboratory_id\r\n),\r\ncte_last_solution as (\r\n\tselect\r\n\t\trank() over (PARTITION by r.laboratory_id order by r.solution_date desc) as rn,\r\n\t\tr.laboratory_id,\r\n\t\tr.solution_date,\r\n\t\ts.name as solution,\r\n\t\tcase\r\n            when s.name = '\u0412\u043d\u0435\u0441\u0442\u0438 \u0434\u043e \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n                then true\r\n            else false\r\n        end as certified\r\n\tfrom registration as r\r\n\t\tjoin solution_type as s\r\n\t\t\ton s.solution_type_id = r.solution_type_id\r\n\twhere r.solution_date is not null\r\n),\r\ncte_last_on as (\r\n\tselect\r\n\t\trank() over (PARTITION by r.laboratory_id order by r.solution_date desc) as rn,\r\n\t\tr.laboratory_id,\r\n\t\tr.solution_date\r\n\tfrom registration as r\r\n\t\tjoin solution_type as s\r\n\t\t\ton s.solution_type_id = r.solution_type_id\r\n\twhere r.solution_date is not null\r\n\t\tand s.name = '\u0412\u043d\u0435\u0441\u0442\u0438 \u0434\u043e \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n),\r\ncte_last_off as (\r\n\tselect\r\n\t\trank() over (PARTITION by r.laboratory_id order by r.solution_date desc) as rn,\r\n\t\tr.laboratory_id,\r\n\t\tr.solution_date\r\n\tfrom registration as r\r\n\t\tjoin solution_type as s\r\n\t\t\ton s.solution_type_id = r.solution_type_id\r\n\twhere r.solution_date is not null\r\n\t\tand s.name = '\u0412\u0438\u043a\u043b\u044e\u0447\u0438\u0442\u0438 \u0437 \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443'\r\n)\r\nselect\r\n    row_number() over(order by lab.name) as \"\u2116 \u0437.\u043f.\",\r\n    lab.name as \"\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lab.region as \"\u041e\u0431\u043b\u0430\u0441\u0442\u044c\",\r\n    lab.town as \"\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442\",\r\n    lab.address as \"\u0410\u0434\u0440\u0435\u0441\u0430\",\r\n    lab.phone_number as \"\u0422\u0435\u043b\u0435\u0444\u043e\u043d\",\r\n    lab.ownership as \"\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0456\",\r\n    lab.management as \"\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f\",\r\n    fiz.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0456\u0437\u0438\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    him.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0445\u0456\u043c\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    bio.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0431\u0456\u043e\u043b\u043e\u0433\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432\",\r\n    trud.factor_name as \"\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432 \u0442\u0440\u0443\u0434. \u043f\u0440\u043e\u0446\u0435\u0441\u0443\",\r\n    case\r\n        when ls.solution = '\u0412\u043d\u0435\u0441\u0442\u0438 \u0434\u043e \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0439\u043d\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u043b\u0456\u043a\u0443' then true\r\n        else false\r\n    end as \"\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    --ls.certified as \"\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457 2\",\r\n    lon.solution_date as \"\u0414\u0430\u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u043d\u044f\",\r\n    loff.solution_date as \"\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f\",\r\n    lab.accreditation_flag as \"\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457\",\r\n    lab.accreditation_end_date as \"\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u0457\"\r\nfrom report_laboratory_v as lab\r\n    left join cte_fiz_factor as fiz\r\n\t    on fiz.laboratory_id = lab.laboratory_id\r\n\tleft join cte_bio_factor as bio\r\n\t    on bio.laboratory_id = lab.laboratory_id\r\n\tleft join cte_him_factor as him\r\n\t    on him.laboratory_id = lab.laboratory_id\r\n\tleft join cte_trud_factor as trud\r\n\t    on trud.laboratory_id = lab.laboratory_id\r\n    left join cte_last_solution as ls\r\n        on ls.rn = 1\r\n            and ls.laboratory_id = lab.laboratory_id\r\n    left join cte_last_on as lon\r\n        on lon.rn = 1\r\n            and lon.laboratory_id = lab.laboratory_id\r\n    left join cte_last_off as loff\r\n        on loff.rn = 1\r\n            and loff.laboratory_id = lab.laboratory_id\r\nwhere lower(lab.name) ~ case when '{{ lab_name }}' = '*' then '.*' else lower('{{ lab_name }}') end\r\n    and ('{{ lab_region }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' OR lab.region = '{{ lab_region }}')\r\n    and ('{{ lab_town }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' OR lab.town = '{{ lab_town }}')\r\n    and ('{{ lab_ownership }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' OR lab.ownership = '{{ lab_ownership }}')\r\n    and (lab.management in ({{ lab_management }}))\r\n    and ('{{ certified }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' or ls.certified = case when '{{ certified }}' = '\u0410\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e' then true when '{{ certified }}' = '\u041d\u0435 \u0430\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u043e' then false end)\r\n    and ('{{ lab_accreditation_flag }}' = '( \u0412\u0441\u0456 \u0437\u043d\u0430\u0447\u0435\u043d\u043d\u044f )' or lab.accreditation_flag = case when '{{ lab_accreditation_flag }}' = '\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e' then true when '{{ lab_accreditation_flag }}' = '\u041d\u0435 \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u043e\u0432\u0430\u043d\u043e' then false end)\r\n    and coalesce(lon.solution_date, '{{ lon_solution_date.end }}') between '{{ lon_solution_date.start }}' and '{{ lon_solution_date.end }}'\r\n    and coalesce(loff.solution_date, '{{ loff_solution_date.end }}') between '{{ loff_solution_date.start }}' and '{{ loff_solution_date.end }}'\r\norder by lab.name;",
+          "api_key": "nSqUcok2ZGItSJHpGTtFQHVuILYF2SnUcYqa4tab",
+          "is_draft": false,
+          "id": 32,
+          "data_source_id": 1,
+          "name": "(\u0424\u0456\u043b\u044c\u0442\u0440) \u0406\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u044f \u043f\u0440\u043e \u0430\u0442\u0435\u0441\u0442\u043e\u0432\u0430\u043d\u0456 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457"
+        },
+        "type": "TABLE",
+        "options": {
+          "itemsPerPage": 25,
+          "columns": [
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u2116 \u0437.\u043f.",
+              "numberFormat": "0,0",
+              "title": "\u2116 \u0437.\u043f.",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "right",
+              "imageHeight": "",
+              "order": 100000,
+              "displayAs": "number",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "integer",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+              "title": "\u041d\u0430\u0437\u0432\u0430 \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100001,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041e\u0431\u043b\u0430\u0441\u0442\u044c",
+              "title": "\u041e\u0431\u043b\u0430\u0441\u0442\u044c",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100002,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442",
+              "title": "\u041d\u0430\u0441\u0435\u043b\u0435\u043d\u0438\u0439 \u043f\u0443\u043d\u043a\u0442",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100003,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0410\u0434\u0440\u0435\u0441\u0430",
+              "title": "\u0410\u0434\u0440\u0435\u0441\u0430",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100004,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d",
+              "title": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100005,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0456",
+              "title": "\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0456",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100006,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+              "title": "\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100007,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0456\u0437\u0438\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+              "title": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0456\u0437\u0438\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100008,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0445\u0456\u043c\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+              "title": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0445\u0456\u043c\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100009,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0431\u0456\u043e\u043b\u043e\u0433\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+              "title": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0431\u0456\u043e\u043b\u043e\u0433\u0456\u0447\u043d\u0438\u0445 \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100010,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432 \u0442\u0440\u0443\u0434\u043e\u0432\u043e\u0433\u043e \u043f\u0440\u043e\u0446\u0435\u0441",
+              "title": "\u041f\u0435\u0440\u0435\u043b\u0456\u043a \u0444\u0430\u043a\u0442\u043e\u0440\u0456\u0432 \u0442\u0440\u0443\u0434\u043e\u0432\u043e\u0433\u043e \u043f\u0440\u043e\u0446\u0435\u0441",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "left",
+              "imageHeight": "",
+              "order": 100011,
+              "displayAs": "string",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "string",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+              "title": "\u0410\u0442\u0435\u0441\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "right",
+              "imageHeight": "",
+              "order": 100012,
+              "displayAs": "boolean",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "\u041d\u0456",
+                "\u0422\u0430\u043a"
+              ],
+              "type": "boolean",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0414\u0430\u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u043d\u044f",
+              "title": "\u0414\u0430\u0442\u0430 \u0432\u043d\u0435\u0441\u0435\u043d\u043d\u044f",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "right",
+              "imageHeight": "",
+              "order": 100013,
+              "displayAs": "datetime",
+              "dateTimeFormat": "DD.MM.YYYY",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "date",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f",
+              "title": "\u0414\u0430\u0442\u0430 \u0432\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u044f",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "right",
+              "imageHeight": "",
+              "order": 100014,
+              "displayAs": "datetime",
+              "dateTimeFormat": "DD.MM.YYYY",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "date",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+              "title": "\u0410\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u044f \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0457",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "right",
+              "imageHeight": "",
+              "order": 100015,
+              "displayAs": "boolean",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "\u041d\u0456",
+                "\u0422\u0430\u043a"
+              ],
+              "type": "boolean",
+              "highlightLinks": false
+            },
+            {
+              "linkUrlTemplate": "{{ @ }}",
+              "name": "\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u0457",
+              "title": "\u0414\u0430\u0442\u0430 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0430\u043a\u0440\u0435\u0434\u0438\u0442\u0430\u0446\u0456\u0457",
+              "imageUrlTemplate": "{{ @ }}",
+              "linkOpenInNewTab": true,
+              "linkTextTemplate": "{{ @ }}",
+              "allowSearch": false,
+              "allowHTML": true,
+              "imageTitleTemplate": "{{ @ }}",
+              "imageWidth": "",
+              "visible": true,
+              "alignContent": "right",
+              "imageHeight": "",
+              "order": 100016,
+              "displayAs": "datetime",
+              "dateTimeFormat": "DD.MM.YYYY",
+              "linkTitleTemplate": "{{ @ }}",
+              "booleanValues": [
+                "false",
+                "true"
+              ],
+              "type": "date",
+              "highlightLinks": false
+            }
+          ]
+        },
+        "name": "Table"
+      },
+      "text": "",
+      "created_at": "2021-03-19T16:18:48.425Z",
+      "updated_at": "2021-03-19T16:19:03.016Z",
+      "options": {
+        "parameterMappings": {
+          "loff_solution_date": {
+            "type": "dashboard-level",
+            "mapTo": "loff_solution_date",
+            "name": "loff_solution_date",
+            "value": null,
+            "title": ""
+          },
+          "lab_accreditation_flag": {
+            "type": "dashboard-level",
+            "mapTo": "lab_accreditation_flag",
+            "name": "lab_accreditation_flag",
+            "value": null,
+            "title": ""
+          },
+          "lab_ownership": {
+            "type": "dashboard-level",
+            "mapTo": "lab_ownership",
+            "name": "lab_ownership",
+            "value": null,
+            "title": ""
+          },
+          "lab_management": {
+            "type": "dashboard-level",
+            "mapTo": "lab_management",
+            "name": "lab_management",
+            "value": null,
+            "title": ""
+          },
+          "lab_name": {
+            "type": "dashboard-level",
+            "mapTo": "lab_name",
+            "name": "lab_name",
+            "value": null,
+            "title": ""
+          },
+          "lab_town": {
+            "type": "dashboard-level",
+            "mapTo": "lab_town",
+            "name": "lab_town",
+            "value": null,
+            "title": ""
+          },
+          "certified": {
+            "type": "dashboard-level",
+            "mapTo": "certified",
+            "name": "certified",
+            "value": null,
+            "title": ""
+          },
+          "lon_solution_date": {
+            "type": "dashboard-level",
+            "mapTo": "lon_solution_date",
+            "name": "lon_solution_date",
+            "value": null,
+            "title": ""
+          },
+          "lab_region": {
+            "type": "dashboard-level",
+            "mapTo": "lab_region",
+            "name": "lab_region",
+            "value": null,
+            "title": ""
+          }
+        },
+        "isHidden": false,
+        "position": {
+          "autoHeight": false,
+          "sizeX": 4,
+          "sizeY": 14,
+          "maxSizeY": 1000,
+          "maxSizeX": 6,
+          "minSizeY": 1,
+          "minSizeX": 2,
+          "col": 0,
+          "row": 0
+        }
+      },
+      "dashboard_id": 21,
+      "width": 1,
+      "id": 59
+    },
+    {
+      "visualization": {
+        "description": "",
+        "created_at": "2021-03-16T18:00:36.849Z",
+        "updated_at": "2021-03-19T16:20:33.582Z",
+        "id": 29,
+        "query": {
+          "user": {
+            "auth_type": "password",
+            "is_disabled": false,
+            "updated_at": "2021-03-19T15:29:15.365Z",
+            "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+            "is_invitation_pending": false,
+            "groups": [
+              1,
+              2
+            ],
+            "id": 1,
+            "name": "redash-admin",
+            "created_at": "2021-03-15T19:06:31.302Z",
+            "disabled_at": null,
+            "is_email_verified": true,
+            "active_at": "2021-03-19T15:28:41Z",
+            "email": "user@mail.com"
+          },
+          "created_at": "2021-03-16T18:00:36.849Z",
+          "latest_query_data_id": 85,
+          "schedule": null,
+          "description": null,
+          "tags": [],
+          "updated_at": "2021-03-16T18:00:37.224Z",
+          "last_modified_by": {
+            "auth_type": "password",
+            "is_disabled": false,
+            "updated_at": "2021-03-19T15:29:15.365Z",
+            "profile_image_url": "https://www.gravatar.com/avatar/6ad193f57f79ac444c3621370da955e9?s=40&d=identicon",
+            "is_invitation_pending": false,
+            "groups": [
+              1,
+              2
+            ],
+            "id": 1,
+            "name": "redash-admin",
+            "created_at": "2021-03-15T19:06:31.302Z",
+            "disabled_at": null,
+            "is_email_verified": true,
+            "active_at": "2021-03-19T15:28:41Z",
+            "email": "user@mail.com"
+          },
+          "options": {
+            "parameters": []
+          },
+          "is_safe": true,
+          "version": 1,
+          "query_hash": "c11b124b1c425569459fb1c520598ebb",
+          "is_archived": false,
+          "query": "select\r\n\tlab.ownership as \"\u0424\u043e\u0440\u043c\u0430 \u0432\u043b\u0430\u0441\u0442\u043d\u043e\u0441\u0442\u0456\",\r\n\tlab.management as \"\u0424\u043e\u0440\u043c\u0430 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f\",\r\n\tcount(0) as \"\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c\"\r\nfrom report_laboratory_v lab\r\ngroup by cube (lab.ownership, lab.management)\r\norder by lab.ownership, lab.management",
+          "api_key": "5cjuVen9U21qWQrUIuVOv4TrKs5FF23M2eBwPjNH",
+          "is_draft": false,
+          "id": 29,
+          "data_source_id": 1,
+          "name": "\u041a\u0456\u043b\u044c\u043a\u0456\u0441\u0442\u044c \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0456\u0439 \u0432 \u0440\u043e\u0437\u0440\u0456\u0437\u0456 \u0444\u043e\u0440\u043c \u0432\u043b\u0430\u0441\u043d\u043e\u0441\u0442\u0456 \u0456 \u0433\u043e\u0441\u043f\u043e\u0434\u0430\u0440\u044e\u0432\u0430\u043d\u043d\u044f"
+        },
+        "type": "TABLE",
+        "options": {},
+        "name": "Table"
+      },
+      "text": "",
+      "created_at": "2021-03-19T16:20:33.582Z",
+      "updated_at": "2021-03-19T17:38:42.317Z",
+      "options": {
+        "parameterMappings": {},
+        "isHidden": false,
+        "position": {
+          "autoHeight": false,
+          "sizeX": 2,
+          "sizeY": 9,
+          "maxSizeY": 1000,
+          "maxSizeX": 6,
+          "minSizeY": 1,
+          "minSizeX": 2,
+          "col": 4,
+          "row": 5
+        }
+      },
+      "dashboard_id": 21,
+      "width": 1,
+      "id": 61
+    }
+  ],
+  "dashboard_filters_enabled": false
+}

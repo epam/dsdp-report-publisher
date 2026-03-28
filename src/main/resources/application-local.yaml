@@ -1,0 +1,8 @@
+redash:
+  default-instance:
+    url: http://mock
+    api-key: apikey
+  lang:
+    uk:
+      url: http://mock
+      api-key: apikey
