@@ -28,7 +28,7 @@
 		</sonar.coverage.exclusions>
 		<sonar.test.exclusions>src/test/**,src/it/**</sonar.test.exclusions>
 		<apache.commonsio.version>2.11.0</apache.commonsio.version>
-		<jsoup.version>1.15.3</jsoup.version>
+		<jsoup.version>1.23.1</jsoup.version>
 		<commons.compress.version>1.26.1</commons.compress.version>
 		<snakeyaml.version>2.2</snakeyaml.version>
 		<ddm-ceph-client.version>1.0.0-SNAPSHOT</ddm-ceph-client.version>
